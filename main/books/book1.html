@@ -61,11 +61,11 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      transform-origin: center center;
     }
     
     .flipbook {
-      max-width: 100%;
-      max-height: 90vh;
+      background: transparent;
     }
     
     .flipbook .hard {
@@ -109,28 +109,10 @@
       margin-bottom: 10px;
     }
     
-    /* Media queries for responsive design */
-    @media (max-width: 1200px) {
-      .flipbook {
-        transform: scale(0.8);
-      }
-    }
-    
-    @media (max-width: 992px) {
-      .flipbook {
-        transform: scale(0.7);
-      }
-    }
-    
+    /* Reset any transform on small screens */
     @media (max-width: 768px) {
-      .flipbook {
-        transform: scale(0.6);
-      }
-    }
-    
-    @media (max-width: 576px) {
-      .flipbook {
-        transform: scale(0.5);
+      .flipbook-container {
+        transform: none;
       }
     }
   </style>
@@ -164,62 +146,98 @@
   <script src="/jquery.js"></script>
   <script src="/turn.js"></script>
   <script>
-    // Function to initialize the flipbook with responsive settings
-    function initFlipbook() {
+    // Function to calculate best size for device
+    function calculateBookSize() {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
-      
-      // Calculate appropriate dimensions based on screen size
+      const isPortrait = windowHeight > windowWidth;
+      const isSmallDevice = windowWidth < 768;
+
       let width, height;
       
-      if (windowWidth <= 576) {
-        // Mobile phones
-        width = windowWidth * 0.9;
-        height = width * 0.6;
-      } else if (windowWidth <= 768) {
-        // Small tablets
-        width = windowWidth * 0.8;
-        height = width * 0.6;
-      } else if (windowWidth <= 992) {
-        // Tablets
+      // For phones - make sure book is small enough to be visible
+      if (windowWidth <= 480) {
+        if (isPortrait) {
+          // For portrait phones, make it very small but visible
+          width = windowWidth * 0.7;
+          height = width * 0.7;
+        } else {
+          // For landscape phones
+          width = windowWidth * 0.85;
+          height = windowHeight * 0.7;
+        }
+      } 
+      // For tablets
+      else if (windowWidth <= 768) {
+        if (isPortrait) {
+          width = windowWidth * 0.8;
+          height = width * 0.65;
+        } else {
+          width = windowWidth * 0.8;
+          height = windowHeight * 0.75;
+        }
+      } 
+      // For small desktops
+      else if (windowWidth <= 992) {
         width = windowWidth * 0.7;
-        height = width * 0.6;
-      } else if (windowWidth <= 1200) {
-        // Small desktops
+        height = windowHeight * 0.7;
+      } 
+      // For medium desktops
+      else if (windowWidth <= 1200) {
         width = 800;
         height = 500;
-      } else {
-        // Large desktops
+      } 
+      // For large desktops
+      else {
         width = 1000;
         height = 600;
       }
+
+      return { width, height };
+    }
+    
+    // Initialize flipbook with proper dimensions
+    function initFlipbook() {
+      const size = calculateBookSize();
       
-      // Initialize turn.js with responsive options
+      // Destroy if already initialized
+      if ($(".flipbook").data().turn) {
+        $(".flipbook").turn("destroy");
+      }
+      
+      // Initialize with new size
       $(".flipbook").turn({
-        width: width,
-        height: height,
+        width: size.width,
+        height: size.height,
         autoCenter: true,
         elevation: 50,
         gradients: true,
+        acceleration: true, // Improves performance on mobile devices
+        display: 'double', // Shows two pages at once on larger screens
         when: {
           turning: function(e, page, view) {
-            // Validate page
             if (page < 1) {
               return false;
             }
           }
         }
       });
+      
+      // For very small devices in landscape, switch to single page view
+      if (window.innerWidth <= 480 && window.innerWidth > window.innerHeight) {
+        $(".flipbook").turn("display", "single");
+      }
     }
     
-    // Check orientation and show message on small devices if in portrait
+    // Check orientation and show message when appropriate
     function checkOrientation() {
       const orientationMessage = document.querySelector('.orientation-message');
       
-      if (window.innerWidth <= 768) {
+      // For mobile phones, suggest landscape orientation
+      if (window.innerWidth <= 480) {
         if (window.innerHeight > window.innerWidth) {  // Portrait mode
           orientationMessage.style.display = 'flex';
-        } else {  // Landscape mode
+        } else {
           orientationMessage.style.display = 'none';
         }
       } else {
@@ -227,18 +245,15 @@
       }
     }
     
-    // Initialize flipbook when DOM is ready
+    // Initialize when DOM is ready
     $(document).ready(function() {
       initFlipbook();
       checkOrientation();
       
-      // Reinitialize when window resizes or orientation changes
+      // Handle orientation changes and resizing
       $(window).on('resize orientationchange', function() {
-        checkOrientation();
-        
-        // Destroy and reinitialize flipbook
         setTimeout(function() {
-          $(".flipbook").turn('destroy');
+          checkOrientation();
           initFlipbook();
         }, 100);
       });
