@@ -1,48 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <title>Shrimad Bhagwat Gita</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreemad Bhagwat Gita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+        #bgvideo{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-height: 100%;
+            min-width: 100%;
+        }
+        .container{
+            position: absolute;
+            color: #FFF6C7;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #bhagwat{
+            margin-top: -20px;
+            font-size: 70px;
+            font-weight: 900;
+        }
+        #gita{
+            margin-top: -50px;
+            font-size: 50px;
+            margin-left: 80px;
+        }
+        .golden-button {
+        display: inline-block;
+        width: 250px;
+        height: 45px;
+        line-height: 45px;
+        padding-top: 3px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: bold;
+        font-family: "Poppins", sans-serif;
+        margin-left: 25px;
+        margin-top: 20px;
+        text-decoration: none;
+        color: black; /* Adjust text color as needed */
+        border-radius: 5px; /* Optional: Rounded corners */
+        background: radial-gradient(
+            ellipse farthest-corner at right bottom,
+            #FFE38B 0%,   
+            #FFF6C7 8%,   
+            #FFF6C7 30%,  
+            #FFF6C7 40%,  
+            transparent 80%
+        ),
+        radial-gradient(
+            ellipse farthest-corner at left top,
+            #FFFFFF 0%,   
+            #FFF6C7 8%,   
+            #E8D293 25%,  
+            #FFF6C7 62.5%, 
+            #FFF6C7 100%   
+        );
+        }
+    </style>
 </head>
-
 <body>
-  <div class="flipbook">
-    <div class="hard">
-      <img src="images/outer.jpeg" alt="">
+    <video autoplay muted loop src="/images/bg.mp4" id="bgvideo" type="video/mp4"></video>
+    <div class="container">
+        <h3>Shrimad</h3>
+        <h1 id="bhagwat">Bhagavad</h1>
+        <h1 id="gita">Gita</h1>
+        <a href="/book.html" class="golden-button">ENTER THE EXPERIENCE</a>
     </div>
-    <div class="hard">
-      <img src="images/inner.png" alt="">
-    </div>
-    <div>
-
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div class="hard"></div>
-    <div class="hard"></div>
-  </div>
-
-  <script src="jquery.js"></script>
-  <script src="turn.js"></script>
-  <script>
-    $(".flipbook").turn();
-  </script>
+    <script>
+        
+    </script>
 </body>
-
 </html>
