@@ -6,14 +6,12 @@
   <title>Arjuna Vishada Yoga</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
     }
-    
     body {
       display: flex;
       justify-content: center;
@@ -23,71 +21,43 @@
       overflow: hidden;
       background: #f1c40f;
     }
-    
-    .orientation-message {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      color: white;
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
-      text-align: center;
-      padding: 20px;
-      flex-direction: column;
     }
-    
-    .orientation-message img {
-      width: 100px;
-      margin-bottom: 20px;
-      animation: rotate 2s infinite;
-    }
-    
-    @keyframes rotate {
-      0% { transform: rotate(-90deg); }
-      20% { transform: rotate(0deg); }
-      80% { transform: rotate(0deg); }
-      100% { transform: rotate(-90deg); }
-    }
-    
     .flipbook-container {
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
-      transform-origin: center center;
+      transition: transform 0.5s ease;
     }
-    
     .flipbook {
-      background: transparent;
+      margin: 0 auto;
+      transition: all 0.5s ease;
     }
-    
     .flipbook .hard {
       background-image: url("/images/inner.png") !important;
       color: #fff;
       font-weight: bold;
       border: none;
     }
-    
     .flipbook .hard img {
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
-    
     .flipbook .hard small {
       font-style: italic;
       font-weight: lighter;
       opacity: 0.7;
       font-size: 14px;
     }
-    
     .flipbook .page {
       background-image: url("/images/page.png");
       display: flex;
@@ -97,166 +67,156 @@
       gap: 10px;
       border: 1px solid rgba(0, 0, 0, 0.11);
     }
-    
     .page img {
       width: 70%;
       object-fit: cover;
       margin: auto;
     }
-    
     .flipbook .page small {
       font-size: 14px;
       margin-bottom: 10px;
     }
     
-    /* Reset any transform on small screens */
-    @media (max-width: 768px) {
+    /* Portrait mode for mobile devices */
+    @media (max-width: 768px) and (orientation: portrait) {
       .flipbook-container {
-        transform: none;
+        transform: rotate(90deg);
+      }
+    }
+
+    /* Media Queries for Responsive Design */
+    @media (max-width: 1200px) {
+      .flipbook {
+        width: 800px !important;
+        height: 480px !important;
+      }
+    }
+    @media (max-width: 992px) {
+      .flipbook {
+        width: 600px !important;
+        height: 360px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .flipbook {
+        width: 500px !important;
+        height: 300px !important;
+      }
+      /* For portrait orientation on mobile */
+      @media (orientation: portrait) {
+        .flipbook {
+          width: 80vh !important;
+          height: 48vh !important;
+        }
+      }
+    }
+    @media (max-width: 576px) {
+      .flipbook {
+        width: 90vw !important;
+        height: 54vw !important;
+      }
+      /* For portrait orientation on small mobile */
+      @media (orientation: portrait) {
+        .flipbook {
+          width: 85vh !important;
+          height: 51vh !important;
+        }
       }
     }
   </style>
 </head>
 <body>
-  <div class="orientation-message">
-    <img src="/api/placeholder/100/100" alt="Please rotate your device">
-    <h2>Please rotate your device</h2>
-    <p>For the best experience, please use landscape orientation</p>
-  </div>
-  
-  <div class="flipbook-container">
-    <div class="flipbook">
-      <div class="hard">
-        <img src="/images/outer.jpeg" alt="">
+  <div class="container">
+    <div class="flipbook-container">
+      <div class="flipbook">
+        <div class="hard">
+          <img src="/images/outer.jpeg" alt="">
+        </div>
+        <div class="hard">
+          <img src="/images/inner.png" alt="">
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="hard"></div>
+        <div class="hard"></div>
       </div>
-      <div class="hard">
-        <img src="/images/inner.png" alt="">
-      </div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-      <div class="hard"></div>
-      <div class="hard"></div>
     </div>
   </div>
-  
+
   <script src="/jquery.js"></script>
   <script src="/turn.js"></script>
   <script>
-    // Function to calculate best size for device
-    function calculateBookSize() {
+    // Function to initialize or reinitialize the flipbook
+    function initializeFlipbook() {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const isPortrait = windowHeight > windowWidth;
-      const isSmallDevice = windowWidth < 768;
-
-      let width, height;
+      const isMobile = windowWidth <= 768;
       
-      // For phones - make sure book is small enough to be visible
-      if (windowWidth <= 480) {
-        if (isPortrait) {
-          // For portrait phones, make it very small but visible
-          width = windowWidth * 0.7;
-          height = width * 0.7;
-        } else {
-          // For landscape phones
-          width = windowWidth * 0.85;
-          height = windowHeight * 0.7;
-        }
-      } 
-      // For tablets
-      else if (windowWidth <= 768) {
-        if (isPortrait) {
-          width = windowWidth * 0.8;
-          height = width * 0.65;
-        } else {
-          width = windowWidth * 0.8;
-          height = windowHeight * 0.75;
-        }
-      } 
-      // For small desktops
-      else if (windowWidth <= 992) {
-        width = windowWidth * 0.7;
-        height = windowHeight * 0.7;
-      } 
-      // For medium desktops
-      else if (windowWidth <= 1200) {
-        width = 800;
-        height = 500;
-      } 
-      // For large desktops
-      else {
-        width = 1000;
-        height = 600;
-      }
-
-      return { width, height };
-    }
-    
-    // Initialize flipbook with proper dimensions
-    function initFlipbook() {
-      const size = calculateBookSize();
+      // Default dimensions
+      let width = 1000;
+      let height = 600;
       
-      // Destroy if already initialized
-      if ($(".flipbook").data().turn) {
-        $(".flipbook").turn("destroy");
+      // Adjust dimensions based on screen size
+      if (windowWidth < 1200) width = 800;
+      if (windowWidth < 992) width = 600;
+      if (windowWidth < 768) width = 500;
+      if (windowWidth < 576) width = windowWidth * 0.9;
+      
+      // Calculate height (maintain aspect ratio)
+      height = width * 0.6;
+      
+      // For mobile in portrait mode, use different dimensions
+      if (isMobile && isPortrait) {
+        // Use viewport height for width since the book is rotated
+        width = windowHeight * 0.85;
+        height = width * 0.6;
       }
       
-      // Initialize with new size
-      $(".flipbook").turn({
-        width: size.width,
-        height: size.height,
+      // Destroy previous instance if it exists
+      if ($('.flipbook').turn('is')) {
+        $('.flipbook').turn('destroy');
+      }
+      
+      // Set dimensions
+      $('.flipbook').css({
+        width: width + 'px',
+        height: height + 'px'
+      });
+      
+      // Initialize turn.js with responsive options
+      $('.flipbook').turn({
+        width: width,
+        height: height,
         autoCenter: true,
+        display: 'double',
+        acceleration: true,
         elevation: 50,
         gradients: true,
-        acceleration: true, // Improves performance on mobile devices
-        display: 'double', // Shows two pages at once on larger screens
         when: {
           turning: function(e, page, view) {
-            if (page < 1) {
-              return false;
-            }
+            // Any additional logic when turning pages
           }
         }
       });
-      
-      // For very small devices in landscape, switch to single page view
-      if (window.innerWidth <= 480 && window.innerWidth > window.innerHeight) {
-        $(".flipbook").turn("display", "single");
-      }
     }
     
-    // Check orientation and show message when appropriate
-    function checkOrientation() {
-      const orientationMessage = document.querySelector('.orientation-message');
-      
-      // For mobile phones, suggest landscape orientation
-      if (window.innerWidth <= 480) {
-        if (window.innerHeight > window.innerWidth) {  // Portrait mode
-          orientationMessage.style.display = 'flex';
-        } else {
-          orientationMessage.style.display = 'none';
-        }
-      } else {
-        orientationMessage.style.display = 'none';
-      }
-    }
-    
-    // Initialize when DOM is ready
+    // Initialize on page load
     $(document).ready(function() {
-      initFlipbook();
-      checkOrientation();
-      
-      // Handle orientation changes and resizing
-      $(window).on('resize orientationchange', function() {
-        setTimeout(function() {
-          checkOrientation();
-          initFlipbook();
-        }, 100);
-      });
+      initializeFlipbook();
+    });
+    
+    // Reinitialize on window resize and orientation change
+    $(window).on('resize orientationchange', function() {
+      // Use a timeout to prevent multiple rapid reinitializations
+      clearTimeout(window.resizeTimeout);
+      window.resizeTimeout = setTimeout(function() {
+        initializeFlipbook();
+      }, 200);
     });
   </script>
 </body>
