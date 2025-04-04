@@ -31,7 +31,12 @@ body {
 }
 .flipbook .hard img{
     height: 100%;
+    position: fixed;
     width: 100%;
+}
+.flipbook .hard #title{
+    margin-bottom: 20px;
+    z-index: 11;
 }
 .flipbook .hard small{
 	font-style: italic;
