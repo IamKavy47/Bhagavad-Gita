@@ -22,12 +22,17 @@ body {
 }
 
 .flipbook .hard {
-    background: #c0392b !important;
+    background-image: url("/images/inner.png") !important;
     color: #fff;
+    width: 719px;
+    height: 900px;
     font-weight: bold;
     border: none; 
 }
-
+.flipbook .hard img{
+    height: 100%;
+    width: 100%;
+}
 .flipbook .hard small{
 	font-style: italic;
 	font-weight: lighter;
@@ -36,7 +41,7 @@ body {
 }
 
 .flipbook .page {
-    background: white;
+    background-image: url("/images/page.png");
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
