@@ -20,7 +20,6 @@
       background: linear-gradient(135deg, #e0d3af, #f8e9c2);
       padding: 2rem;
       overflow-x: hidden;
-      /* background-image: url('https://i.imgur.com/ZQBtC6p.jpg'); */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -95,17 +94,16 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      /* background: #f1c40f; */
       border-radius: 2px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: #f1c40f;
       background-image: url('/images/outer.jpeg');
       background-size: cover;
       background-position: center;
-      /* border: 4px solid #5a3921; */
       overflow: hidden;
       padding: 10px;
       text-align: center;
@@ -122,10 +120,84 @@
       z-index: 1;
     }
     
-    .book-title {
-/*       background: rgba(0, 0, 0, 0.7); */
+    /* Added from book cover styling */
+    .hare-krishna {
+      position: absolute;
+      top: 18px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: bold;
       color: white;
-      padding: 8px 5px;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+      z-index: 3;
+      font-size: 10px;
+    }
+    
+    .book-title-sanskrit {
+      position: absolute;
+      top: 35px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+      z-index: 3;
+      font-size: 10px;
+    }
+    
+    .chapter-badge {
+      position: absolute;
+      top: 55px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+      color: brown;
+      border-radius: 5px;
+      z-index: 3;
+      background: radial-gradient(
+        ellipse farthest-corner at right bottom,
+        #FFE38B 0%,
+        #FFF6C7 8%,
+        #FFF6C7 30%,
+        #FFF6C7 40%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse farthest-corner at left top,
+        #FFFFFF 0%,
+        #FFF6C7 8%,
+        #E8D293 25%,
+        #FFF6C7 62.5%,
+        #FFF6C7 100%
+      );
+    }
+    
+    .book-title-sanskrit-name {
+      position: absolute;
+      top: 115px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-weight: bold;
+      color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+      z-index: 3;
+      font-size: 10px;
+    }
+    
+    .book-title {
+      position: absolute;
+      top: 5px;
+      left: 0;
+      right: 0;
+      color: white;
       font-size: 12px;
       text-align: center;
       font-weight: bold;
@@ -134,6 +206,7 @@
       width: 100%;
       border-radius: 4px;
       word-wrap: break-word;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
     }
 
     .chapter-number {
@@ -167,7 +240,7 @@
       transform: scale(1.05) translateY(-5px);
     }
     
-    /* Divine color variations for book borders */
+    /* Divine color variations for book covers */
     .book:nth-child(6n+1) .book-cover {
       border-color: #B8860B; /* Dark Golden Rod */
     }
@@ -238,17 +311,69 @@
     }
     
     .flipbook .hard {
-      background-image: url("/images/inner.png") !important;
+      background-image: url("/api/placeholder/719/900") !important;
       color: #fff;
       width: 719px;
       height: 900px;
       font-weight: bold;
       border: none;
     }
-    
+
     .flipbook .hard img {
       height: 100%;
       width: 100%;
+      position: fixed;
+    }
+
+    .flipbook .hard #hare {
+      z-index: 11;
+    }
+
+    .flipbook .hard .title1 {
+      margin-bottom: 50px;
+      z-index: 11;
+    }
+
+    .flipbook .hard #chapter {
+      z-index: 11;
+      width: 150px;
+      height: 45px;
+      line-height: 45px;
+      padding-top: 1.5px;
+      text-align: center;
+      margin-bottom: 35px;
+      font-size: 25px;
+      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      text-decoration: none;
+      color: brown;
+      border-radius: 12px;
+      background: radial-gradient(
+        ellipse farthest-corner at right bottom,
+        #FFE38B 0%,
+        #FFF6C7 8%,
+        #FFF6C7 30%,
+        #FFF6C7 40%,
+        transparent 80%
+      ),
+      radial-gradient(
+        ellipse farthest-corner at left top,
+        #FFFFFF 0%,
+        #FFF6C7 8%,
+        #E8D293 25%,
+        #FFF6C7 62.5%,
+        #FFF6C7 100%
+      );
+    }
+
+    .flipbook .hard .title2 {
+      margin-bottom: 10px;
+      z-index: 11;
+    }
+
+    .flipbook .hard .title3 {
+      margin-bottom: 160px;
+      z-index: 11;
     }
     
     .flipbook .hard small {
@@ -259,7 +384,7 @@
     }
     
     .flipbook .page {
-      background-image: url("/images/page.png");
+      background-image: url("/api/placeholder/500/600");
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -335,6 +460,12 @@
         font-size: 10px;
       }
       
+      .chapter-badge {
+        width: 20px;
+        height: 16px;
+        font-size: 10px;
+      }
+      
       h1 {
         font-size: 1.5rem;
         padding: 0.7rem;
@@ -354,115 +485,187 @@
       <a href="/main/books/book1.html">
         <div class="book" data-book-id="1">
           <div class="book-cover">
-            <div class="chapter-number">1</div>
+            <div class="hare-krishna">हरे कृष्ण</div>
+            <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+            <div class="chapter-badge">अध्याय 1</div>
+            <div class="book-title-sanskrit-name">|| अर्जुन विषाद योग ||</div>
             <div class="book-title">Arjuna Vishada Yoga</div>
+            <!-- <div class="chapter-number">1</div> -->
           </div>
         </div>
       </a>
       <a href="/main/books/book2.html">
         <div class="book" data-book-id="2">
           <div class="book-cover">
-            <div class="chapter-number">2</div>
+            <div class="hare-krishna">हरे कृष्ण</div>
+            <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+            <div class="chapter-badge">अध्याय 2</div>
+            <div class="book-title-sanskrit-name">|| सांख्य योग ||</div>
             <div class="book-title">Sankhya Yoga</div>
+            <!-- <div class="chapter-number">2</div> -->
           </div>
         </div>
       </a>
       <a href="/main/books/book3.html">
         <div class="book" data-book-id="3">
           <div class="book-cover">
-            <div class="chapter-number">3</div>
+            <div class="hare-krishna">हरे कृष्ण</div>
+            <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+            <div class="chapter-badge">अध्याय 3</div>
+            <div class="book-title-sanskrit-name">|| कर्मयोग ||</div>
             <div class="book-title">Karma Yoga</div>
+            <!-- <div class="chapter-number">3</div> -->
           </div>
         </div>
       </a>
       <div class="book" data-book-id="4">
         <div class="book-cover">
-          <div class="chapter-number">4</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 4</div>
+          <div class="book-title-sanskrit-name">|| ज्ञान योग ||</div>
           <div class="book-title">Jnana Yoga</div>
+          <!-- <div class="chapter-number">4</div> -->
         </div>
       </div>
       <div class="book" data-book-id="5">
         <div class="book-cover">
-          <div class="chapter-number">5</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 5</div>
+          <div class="book-title-sanskrit-name">|| कर्म संन्यास योग ||</div>
           <div class="book-title">Karma Sanyasa Yoga</div>
+          <!-- <div class="chapter-number">5</div> -->
         </div>
       </div>
       <div class="book" data-book-id="6">
         <div class="book-cover">
-          <div class="chapter-number">6</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 6</div>
+          <div class="book-title-sanskrit-name">|| ध्यान योग ||</div>
           <div class="book-title">Dhyana Yoga</div>
+          <!-- <div class="chapter-number">6</div> -->
         </div>
       </div>
       <div class="book" data-book-id="7">
         <div class="book-cover">
-          <div class="chapter-number">7</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 7</div>
+          <div class="book-title-sanskrit-name">|| ज्ञान विज्ञान योग ||</div>
           <div class="book-title">Jnana Vijnana Yoga</div>
+          <!-- <div class="chapter-number">7</div> -->
         </div>
       </div>
       <div class="book" data-book-id="8">
         <div class="book-cover">
-          <div class="chapter-number">8</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 8</div>
+          <div class="book-title-sanskrit-name">|| अक्षर ब्रह्म योग ||</div>
           <div class="book-title">Akshara Brahma Yoga</div>
+          <!-- <div class="chapter-number">8</div> -->
         </div>
       </div>
       <div class="book" data-book-id="9">
         <div class="book-cover">
-          <div class="chapter-number">9</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 9</div>
+          <div class="book-title-sanskrit-name">|| राज विद्या योग ||</div>
           <div class="book-title">Raja Vidya Yoga</div>
+          <!-- <div class="chapter-number">9</div> -->
         </div>
       </div>
       <div class="book" data-book-id="10">
         <div class="book-cover">
-          <div class="chapter-number">10</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 10</div>
+          <div class="book-title-sanskrit-name">|| विभूति योग ||</div>
           <div class="book-title">Vibhuti Yoga</div>
+          <!-- <div class="chapter-number">10</div> -->
         </div>
       </div>
       <div class="book" data-book-id="11">
         <div class="book-cover">
-          <div class="chapter-number">11</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 11</div>
+          <div class="book-title-sanskrit-name">|| विश्वरूप दर्शन योग ||</div>
           <div class="book-title">Vishwarupa Darshana Yoga</div>
+          <!-- <div class="chapter-number">11</div> -->
         </div>
       </div>
       <div class="book" data-book-id="12">
         <div class="book-cover">
-          <div class="chapter-number">12</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 12</div>
+          <div class="book-title-sanskrit-name">|| भक्ति योग ||</div>
           <div class="book-title">Bhakti Yoga</div>
+          <!-- <div class="chapter-number">12</div> -->
         </div>
       </div>
       <div class="book" data-book-id="13">
         <div class="book-cover">
-          <div class="chapter-number">13</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 13</div>
+          <div class="book-title-sanskrit-name">|| क्षेत्र क्षेत्रज्ञ योग ||</div>
           <div class="book-title">Kshetra Kshetrajna Yoga</div>
+          <!-- <div class="chapter-number">13</div> -->
         </div>
       </div>
       <div class="book" data-book-id="14">
         <div class="book-cover">
-          <div class="chapter-number">14</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 14</div>
+          <div class="book-title-sanskrit-name">|| गुणत्रय विभाग योग ||</div>
           <div class="book-title">Gunatraya Vibhaga Yoga</div>
+          <!-- <div class="chapter-number">14</div> -->
         </div>
       </div>
       <div class="book" data-book-id="15">
         <div class="book-cover">
-          <div class="chapter-number">15</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 15</div>
+          <div class="book-title-sanskrit-name">|| पुरुषोत्तम योग ||</div>
           <div class="book-title">Purushottama Yoga</div>
+          <!-- <div class="chapter-number">15</div> -->
         </div>
       </div>
       <div class="book" data-book-id="16">
         <div class="book-cover">
-          <div class="chapter-number">16</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 16</div>
+          <div class="book-title-sanskrit-name">|| दैवासुर संपद योग ||</div>
           <div class="book-title">Daivasura Sampad Yoga</div>
+          <!-- <div class="chapter-number">16</div> -->
         </div>
       </div>
       <div class="book" data-book-id="17">
         <div class="book-cover">
-          <div class="chapter-number">17</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 17</div>
+          <div class="book-title-sanskrit-name">|| श्रद्धात्रय विभाग योग ||</div>
           <div class="book-title">Shraddhatraya Vibhaga Yoga</div>
+          <!-- <div class="chapter-number">17</div> -->
         </div>
       </div>
       <div class="book" data-book-id="18">
         <div class="book-cover">
-          <div class="chapter-number">18</div>
+          <div class="hare-krishna">हरे कृष्ण</div>
+          <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
+          <div class="chapter-badge">अध्याय 18</div>
+          <div class="book-title-sanskrit-name">|| मोक्ष संन्यास योग ||</div>
           <div class="book-title">Moksha Sanyasa Yoga</div>
+          <!-- <div class="chapter-number">18</div> -->
         </div>
       </div>
     </div>
@@ -473,10 +676,15 @@
     <div class="modal-content">
       <div class="flipbook">
         <div class="hard">
-          <img src="images/outer.jpeg" alt="">
+          <img src="/api/placeholder/719/900" alt="Cover">
+          <h3 id="hare">हरे कृष्ण</h3>
+          <h1 class="title1">श्रीमद्भगवद्गीता</h1>
+          <div id="chapter">अध्याय</div>
+          <h1 class="title2">|| Chapter Title ||</h1>
+          <h1 class="title3">English Title</h1>
         </div>
         <div class="hard">
-          <img src="images/inner.png" alt="">
+          <img src="/api/placeholder/719/900" alt="Inner cover">
         </div>
         <div></div>
         <div></div>
@@ -490,64 +698,8 @@
     </div>
   </div>
 
-  <script src="jquery.js"></script>
-  <script src="turn.js"></script>
   <script>
-    // Initialize flipbook
-    $(document).ready(function() {
-      // Book click event
-      $('.book').on('click', function() {
-        const bookId = $(this).data('book-id');
-        console.log(`Opening chapter ${bookId} of Bhagavad Gita`);
-        
-        // Show modal
-        $('#bookModal').fadeIn(300);
-        
-        // Initialize the flipbook with responsive sizing
-        const windowWidth = $(window).width();
-        let flipbookWidth, flipbookHeight;
-        
-        if (windowWidth < 576) {
-          flipbookWidth = windowWidth * 0.9;
-          flipbookHeight = flipbookWidth * 0.6;
-        } else {
-          flipbookWidth = Math.min(windowWidth * 0.9, 1000);
-          flipbookHeight = flipbookWidth * 0.6;
-        }
-        
-        $(".flipbook").turn({
-          width: flipbookWidth,
-          height: flipbookHeight,
-          autoCenter: true,
-          shadow: true
-        });
-      });
-      
-      // Close modal
-      $('.close-btn').on('click', function() {
-        $('#bookModal').fadeOut(300);
-        // Destroy flipbook when closing
-        $(".flipbook").turn('destroy');
-      });
-      
-      // Handle window resize for responsive flipbook
-      $(window).resize(function() {
-        if ($('#bookModal').is(':visible')) {
-          const windowWidth = $(window).width();
-          let flipbookWidth, flipbookHeight;
-          
-          if (windowWidth < 576) {
-            flipbookWidth = windowWidth * 0.9;
-            flipbookHeight = flipbookWidth * 0.6;
-          } else {
-            flipbookWidth = Math.min(windowWidth * 0.9, 1000);
-            flipbookHeight = flipbookWidth * 0.6;
-          }
-          
-          $(".flipbook").turn('size', flipbookWidth, flipbookHeight);
-        }
-      });
-    });
+    
   </script>
 </body>
 </html>
