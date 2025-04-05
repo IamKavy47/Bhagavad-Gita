@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sankhya Yoga</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-content: center;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      background: #f1c40f;
+      position: relative;
+    }
+
+    .flipbook-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Base flipbook dimensions - will be scaled with media queries */
+    .flipbook {
+      width: 1000px;
+      height: 600px;
+      /* Maintain aspect ratio of 5:3 */
+      aspect-ratio: 5/3;
+    }
+
+    .flipbook .hard {
+      background-image: url("/images/inner.png") !important;
+      color: #fff;
+      width: 719px;
+      height: 900px;
+      font-weight: bold;
+      border: none;
+      position: relative;
+    }
+
+    .flipbook .hard img {
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    /* Content container to ensure text stays within the frame */
+    .cover-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* Padding to ensure content stays within the golden frame */
+      padding: 15% 12%;
+      z-index: 11;
+    }
+
+    .flipbook .hard #hare {
+      margin-bottom: 5%;
+      font-size: 1.5rem;
+    }
+
+    .flipbook .hard .title1 {
+      margin-bottom: 8%;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    .flipbook .hard #chapter {
+      width: 150px;
+      height: 45px;
+      line-height: 45px;
+      padding-top: 1.5px;
+      text-align: center;
+      margin-bottom: 5%;
+      font-size: 1.5rem;
+      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      text-decoration: none;
+      color: brown;
+      border-radius: 12px;
+      background: radial-gradient(
+          ellipse farthest-corner at right bottom,
+          #FFE38B 0%,
+          #FFF6C7 8%,
+          #FFF6C7 30%,
+          #FFF6C7 40%,
+          transparent 80%
+        ),
+        radial-gradient(
+          ellipse farthest-corner at left top,
+          #FFFFFF 0%,
+          #FFF6C7 8%,
+          #E8D293 25%,
+          #FFF6C7 62.5%,
+          #FFF6C7 100%
+        );
+    }
+
+    .flipbook .hard .title2 {
+      margin-bottom: 5%;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .flipbook .hard .title3 {
+      margin-bottom: 10%;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .flipbook .hard small {
+      font-style: italic;
+      font-weight: lighter;
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    .flipbook .page {
+      background-image: url("/images/page.png");
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.11);
+    }
+
+    .page img {
+      width: 70%;
+      object-fit: cover;
+      margin: auto;
+    }
+
+    .flipbook .page small {
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    /* Navigation controls */
+    .navigation-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .nav-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #ccc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background-color: rgba(255, 255, 255, 1);
+      transform: scale(1.05);
+    }
+
+    /* Media Queries for Responsiveness */
+    /* Large desktop */
+    @media (min-width: 1200px) {
+      .flipbook {
+        width: 1000px;
+        height: 600px;
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 992px) and (max-width: 1199px) {
+      .flipbook {
+        width: 900px;
+        height: 540px;
+      }
+    }
+
+    /* Tablet landscape */
+    @media (min-width: 768px) and (max-width: 991px) {
+      .flipbook {
+        width: 700px;
+        height: 420px;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 1.3rem;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1.8rem;
+      }
+      
+      .flipbook .hard #chapter {
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.3rem;
+      }
+      
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1.7rem;
+      }
+    }
+
+    /* Tablet portrait */
+    @media (min-width: 576px) and (max-width: 767px) {
+      .flipbook {
+        width: 500px;
+        height: 300px;
+      }
+      
+      .cover-content {
+        padding: 12% 10%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 1.1rem;
+        margin-bottom: 4%;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1.5rem;
+        margin-bottom: 6%;
+      }
+      
+      .flipbook .hard #chapter {
+        width: 110px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.1rem;
+        margin-bottom: 4%;
+      }
+      
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1.4rem;
+        margin-bottom: 4%;
+      }
+    }
+
+    /* Mobile landscape */
+    @media (min-width: 400px) and (max-width: 575px) {
+      .flipbook {
+        width: 380px;
+        height: 228px;
+      }
+      
+      .cover-content {
+        padding: 10% 8%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 0.9rem;
+        margin-bottom: 3%;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1.2rem;
+        margin-bottom: 5%;
+      }
+      
+      .flipbook .hard #chapter {
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.9rem;
+        margin-bottom: 3%;
+      }
+      
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1.1rem;
+        margin-bottom: 3%;
+      }
+      
+      .nav-btn {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    /* Mobile portrait */
+    @media (max-width: 399px) {
+      .flipbook {
+        width: 300px;
+        height: 180px;
+      }
+      
+      .cover-content {
+        padding: 8% 6%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 0.8rem;
+        margin-bottom: 2%;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1rem;
+        margin-bottom: 4%;
+      }
+      
+      .flipbook .hard #chapter {
+        width: 80px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 0.8rem;
+        margin-bottom: 2%;
+      }
+      
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 0.9rem;
+        margin-bottom: 2%;
+      }
+      
+      .nav-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 16px;
+      }
+    }
+
+    /* Orientation-specific styles */
+    @media (orientation: landscape) {
+      /* Additional adjustments for landscape mode if needed */
+      .flipbook-container.rotated-90, 
+      .flipbook-container.rotated-270 {
+        padding: 5% 0;
+      }
+    }
+
+    @media (orientation: portrait) {
+      /* Additional adjustments for portrait mode if needed */
+      .flipbook-container.rotated-90, 
+      .flipbook-container.rotated-270 {
+        padding: 0 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flipbook-container" id="flipbook-container">
+    <div class="flipbook" id="flipbook">
+      <div class="hard">
+        <img src="/images/outer.jpeg" alt="Book cover">
+        <div class="cover-content">
+          <h3 id="hare">हरे कृष्ण</h3>
+          <h1 class="title1">श्रीमद्भगवद्गीता</h1>
+          <div id="chapter">अध्याय 6</div>
+          <h1 class="title2">|| ध्यान योग ||</h1>
+          <h1 class="title3">Dhyana Yoga</h1>
+        </div>
+      </div>
+      <div class="hard">
+        <img src="/images/inner.png" alt="">
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div class="hard"></div>
+      <div class="hard"></div>
+    </div>
+  </div>
+
+  <div class="navigation-controls">
+    <button class="nav-btn" id="prev-btn" title="Previous Page">◀</button>
+    <button class="nav-btn" id="next-btn" title="Next Page">▶</button>
+  </div>
+
+  <script src="/jquery.js"></script>
+  <script src="/turn.js"></script>
+  <script src="/book3.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Initialize turn.js with responsive settings
+      function initializeFlipbook() {
+        // Destroy if already initialized
+        if ($.data($("#flipbook")[0], 'turn')) {
+          $("#flipbook").turn("destroy");
+        }
+        
+        // Get current dimensions
+        const flipbookWidth = $("#flipbook").width();
+        const flipbookHeight = $("#flipbook").height();
+        
+        // Initialize with current dimensions
+        $("#flipbook").turn({
+          width: flipbookWidth,
+          height: flipbookHeight,
+          autoCenter: true,
+          display: 'double',
+          acceleration: true,
+          gradients: true,
+          elevation: 50,
+          when: {
+            turning: function(e, page, view) {
+              // Add page turning effect
+              const book = $(this);
+              const pages = book.turn('pages');
+            },
+            turned: function(e, page, view) {
+              // Book is ready after page turn
+              $(this).turn('center');
+            }
+          }
+        });
+      }
+      
+      // Initialize on page load
+      initializeFlipbook();
+      
+      // Reinitialize on window resize
+      let resizeTimer;
+      $(window).on('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+          initializeFlipbook();
+        }, 250);
+      });
+
+      // Navigation buttons
+      $('#prev-btn').on('click', function() {
+        $("#flipbook").turn('previous');
+      });
+      
+      $('#next-btn').on('click', function() {
+        $("#flipbook").turn('next');
+      });
+      
+      // Keyboard navigation
+      $(document).keydown(function(e) {
+        switch(e.keyCode) {
+          case 37: // left arrow
+            $("#flipbook").turn('previous');
+            e.preventDefault();
+            break;
+          case 39: // right arrow
+            $("#flipbook").turn('next');
+            e.preventDefault();
+            break;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
+
