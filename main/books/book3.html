@@ -31,8 +31,6 @@
       align-items: center;
       height: 100vh;
       width: 100vw;
-      transform-origin: center center;
-      transition: transform 0.5s ease;
     }
 
     /* Base flipbook dimensions - will be scaled with media queries */
@@ -50,32 +48,52 @@
       height: 900px;
       font-weight: bold;
       border: none;
+      position: relative;
     }
 
     .flipbook .hard img {
       height: 100%;
-      position: fixed;
+      position: absolute;
       width: 100%;
+      top: 0;
+      left: 0;
+    }
+
+    /* Content container to ensure text stays within the frame */
+    .cover-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* Padding to ensure content stays within the golden frame */
+      padding: 15% 12%;
+      z-index: 11;
     }
 
     .flipbook .hard #hare {
-      z-index: 11;
+      margin-bottom: 5%;
+      font-size: 1.5rem;
     }
 
     .flipbook .hard .title1 {
-      margin-bottom: 50px;
-      z-index: 11;
+      margin-bottom: 8%;
+      font-size: 2.2rem;
+      text-align: center;
     }
 
     .flipbook .hard #chapter {
-      z-index: 11;
       width: 150px;
       height: 45px;
       line-height: 45px;
       padding-top: 1.5px;
       text-align: center;
-      margin-bottom: 15px;
-      font-size: 25px;
+      margin-bottom: 5%;
+      font-size: 1.5rem;
       font-weight: bold;
       font-family: "Poppins", sans-serif;
       text-decoration: none;
@@ -100,13 +118,15 @@
     }
 
     .flipbook .hard .title2 {
-      margin-bottom: 10px;
-      z-index: 11;
+      margin-bottom: 5%;
+      font-size: 2rem;
+      text-align: center;
     }
 
     .flipbook .hard .title3 {
-      margin-bottom: 160px;
-      z-index: 11;
+      margin-bottom: 10%;
+      font-size: 2rem;
+      text-align: center;
     }
 
     .flipbook .hard small {
@@ -137,8 +157,8 @@
       margin-bottom: 10px;
     }
 
-    /* Rotation Controls */
-    .rotation-controls {
+    /* Navigation controls */
+    .navigation-controls {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -147,7 +167,7 @@
       z-index: 1000;
     }
 
-    .rotate-btn {
+    .nav-btn {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -162,7 +182,7 @@
       transition: all 0.2s ease;
     }
 
-    .rotate-btn:hover {
+    .nav-btn:hover {
       background-color: rgba(255, 255, 255, 1);
       transform: scale(1.05);
     }
@@ -190,6 +210,26 @@
         width: 700px;
         height: 420px;
       }
+      
+      .flipbook .hard #hare {
+        font-size: 1.3rem;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1.8rem;
+      }
+      
+      .flipbook .hard #chapter {
+        width: 130px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.3rem;
+      }
+      
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1.7rem;
+      }
     }
 
     /* Tablet portrait */
@@ -199,25 +239,32 @@
         height: 300px;
       }
       
-      .flipbook .hard #chapter {
-        width: 120px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 20px;
+      .cover-content {
+        padding: 12% 10%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 1.1rem;
+        margin-bottom: 4%;
       }
       
       .flipbook .hard .title1 {
-        margin-bottom: 30px;
-        font-size: 24px;
+        font-size: 1.5rem;
+        margin-bottom: 6%;
       }
       
-      .flipbook .hard .title2 {
-        font-size: 24px;
+      .flipbook .hard #chapter {
+        width: 110px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.1rem;
+        margin-bottom: 4%;
       }
       
+      .flipbook .hard .title2,
       .flipbook .hard .title3 {
-        margin-bottom: 100px;
-        font-size: 24px;
+        font-size: 1.4rem;
+        margin-bottom: 4%;
       }
     }
 
@@ -228,28 +275,35 @@
         height: 228px;
       }
       
-      .flipbook .hard #chapter {
-        width: 100px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 16px;
+      .cover-content {
+        padding: 10% 8%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 0.9rem;
+        margin-bottom: 3%;
       }
       
       .flipbook .hard .title1 {
-        margin-bottom: 20px;
-        font-size: 20px;
+        font-size: 1.2rem;
+        margin-bottom: 5%;
       }
       
-      .flipbook .hard .title2 {
-        font-size: 20px;
+      .flipbook .hard #chapter {
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.9rem;
+        margin-bottom: 3%;
       }
       
+      .flipbook .hard .title2,
       .flipbook .hard .title3 {
-        margin-bottom: 80px;
-        font-size: 20px;
+        font-size: 1.1rem;
+        margin-bottom: 3%;
       }
       
-      .rotate-btn {
+      .nav-btn {
         width: 35px;
         height: 35px;
       }
@@ -262,28 +316,35 @@
         height: 180px;
       }
       
+      .cover-content {
+        padding: 8% 6%;
+      }
+      
+      .flipbook .hard #hare {
+        font-size: 0.8rem;
+        margin-bottom: 2%;
+      }
+      
+      .flipbook .hard .title1 {
+        font-size: 1rem;
+        margin-bottom: 4%;
+      }
+      
       .flipbook .hard #chapter {
         width: 80px;
         height: 25px;
         line-height: 25px;
-        font-size: 14px;
+        font-size: 0.8rem;
+        margin-bottom: 2%;
       }
       
-      .flipbook .hard .title1 {
-        margin-bottom: 15px;
-        font-size: 18px;
-      }
-      
-      .flipbook .hard .title2 {
-        font-size: 18px;
-      }
-      
+      .flipbook .hard .title2,
       .flipbook .hard .title3 {
-        margin-bottom: 60px;
-        font-size: 18px;
+        font-size: 0.9rem;
+        margin-bottom: 2%;
       }
       
-      .rotate-btn {
+      .nav-btn {
         width: 30px;
         height: 30px;
         font-size: 16px;
@@ -313,12 +374,14 @@
   <div class="flipbook-container" id="flipbook-container">
     <div class="flipbook" id="flipbook">
       <div class="hard">
-        <img src="/images/outer.jpeg" alt="">
-        <h3 id="hare">हरे कृष्ण</h3>
-        <h1 class="title1">श्रीमद्भगवद्गीता</h1>
-        <div id="chapter">अध्याय 3</div>
-        <h1 class="title2">|| कर्मयोग ||</h1>
-        <h1 class="title3">Karma Yoga</h1>
+        <img src="/images/outer.jpeg" alt="Book cover">
+        <div class="cover-content">
+          <h3 id="hare">हरे कृष्ण</h3>
+          <h1 class="title1">श्रीमद्भगवद्गीता</h1>
+          <div id="chapter">अध्याय 3</div>
+          <h1 class="title2">|| कर्मयोग ||</h1>
+          <h1 class="title3">Karma Yoga</h1>
+        </div>
       </div>
       <div class="hard">
         <img src="/images/inner.png" alt="">
@@ -334,19 +397,20 @@
     </div>
   </div>
 
-  <div class="rotation-controls">
-    <button class="rotate-btn" id="rotate-btn" title="Rotate Book">⟳</button>
-    <button class="rotate-btn" id="reset-btn" title="Reset Rotation">↺</button>
+  <div class="navigation-controls">
+    <button class="nav-btn" id="prev-btn" title="Previous Page">◀</button>
+    <button class="nav-btn" id="next-btn" title="Next Page">▶</button>
   </div>
 
   <script src="/jquery.js"></script>
   <script src="/turn.js"></script>
+  <script src="/book3.js"></script>
   <script>
     $(document).ready(function() {
       // Initialize turn.js with responsive settings
       function initializeFlipbook() {
         // Destroy if already initialized
-        if ($("#flipbook").turn("is")) {
+        if ($.data($("#flipbook")[0], 'turn')) {
           $("#flipbook").turn("destroy");
         }
         
@@ -360,7 +424,20 @@
           height: flipbookHeight,
           autoCenter: true,
           display: 'double',
-          // Add any other turn.js options you need
+          acceleration: true,
+          gradients: true,
+          elevation: 50,
+          when: {
+            turning: function(e, page, view) {
+              // Add page turning effect
+              const book = $(this);
+              const pages = book.turn('pages');
+            },
+            turned: function(e, page, view) {
+              // Book is ready after page turn
+              $(this).turn('center');
+            }
+          }
         });
       }
       
@@ -376,38 +453,31 @@
         }, 250);
       });
 
-      // Rotation functionality
-      let currentRotation = 0;
-      const container = document.getElementById('flipbook-container');
-      
-      // Rotate button
-      document.getElementById('rotate-btn').addEventListener('click', function() {
-        // Rotate 90 degrees clockwise
-        currentRotation = (currentRotation + 90) % 360;
-        applyRotation();
+      // Navigation buttons
+      $('#prev-btn').on('click', function() {
+        $("#flipbook").turn('previous');
       });
       
-      // Reset rotation button
-      document.getElementById('reset-btn').addEventListener('click', function() {
-        // Reset to original position
-        currentRotation = 0;
-        applyRotation();
+      $('#next-btn').on('click', function() {
+        $("#flipbook").turn('next');
       });
       
-      // Apply rotation
-      function applyRotation() {
-        container.style.transform = `rotate(${currentRotation}deg)`;
-        
-        // Remove all rotation classes first
-        container.classList.remove('rotated-0', 'rotated-90', 'rotated-180', 'rotated-270');
-        // Add current rotation class
-        container.classList.add(`rotated-${currentRotation}`);
-        
-        // Reinitialize flipbook after rotation to adjust dimensions
-        setTimeout(initializeFlipbook, 500);
-      }
+      // Keyboard navigation
+      $(document).keydown(function(e) {
+        switch(e.keyCode) {
+          case 37: // left arrow
+            $("#flipbook").turn('previous');
+            e.preventDefault();
+            break;
+          case 39: // right arrow
+            $("#flipbook").turn('next');
+            e.preventDefault();
+            break;
+        }
+      });
     });
   </script>
 </body>
 
 </html>
+
