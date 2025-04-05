@@ -6,89 +6,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sankhya Yoga</title>
   <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
       font-family: "Poppins", sans-serif;
     }
 
     body {
-        display: grid;
-        place-content: center;
-        height: 100vh;
-        width: 100vw;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
       background: #f1c40f;
     }
 
+    .flipbook-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
     .flipbook {
-        width: 1000px;
-        height: 600px;
+      width: 90%;
+      max-width: 1000px;
+      height: 600px;
+      margin: 0 auto;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .flipbook .hard {
-        background-image: url("/images/inner.png") !important;
-        color: #fff;
-        width: 719px;
-        height: 900px;
-        font-weight: bold;
-        border: none; 
+      background-image: url("/images/inner.png") !important;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      position: relative;
     }
-    .flipbook .hard img{
-        height: 100%;
-        position: fixed;
-        width: 100%;
+
+    .flipbook .hard img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      position: absolute;
     }
-    .flipbook .hard #hare{
-        z-index: 11;
+
+    .flipbook .hard #hare {
+      position: absolute;
+      top: 10%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      z-index: 11;
     }
-    .flipbook .hard .title1{
-        margin-bottom: 50px;
-        z-index: 11;
+
+    .flipbook .hard .title1 {
+      position: absolute;
+      top: 20%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin-bottom: 50px;
+      z-index: 11;
     }
-    .flipbook .hard #chapter{
-        z-index: 11;
-        width: 150px;
-        height: 45px;
-        line-height: 45px;
-        padding-top: 1.5px;
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: 25px;
-        font-weight: bold;
-        font-family: "Poppins", sans-serif;
-        text-decoration: none;
-        color: brown; /* Adjust text color as needed */
-        border-radius: 12px; /* Optional: Rounded corners */
-        background: radial-gradient(
-                ellipse farthest-corner at right bottom,
-                #FFE38B 0%,   
-                #FFF6C7 8%,   
-                #FFF6C7 30%,  
-                #FFF6C7 40%,  
-                transparent 80%
-            ),
-            radial-gradient(
-                ellipse farthest-corner at left top,
-                #FFFFFF 0%,   
-                #FFF6C7 8%,   
-                #E8D293 25%,  
-                #FFF6C7 62.5%, 
-                #FFF6C7 100%   
-            );
+
+    .flipbook .hard #chapter {
+      position: absolute;
+      top: 35%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 11;
+      width: 150px;
+      height: 45px;
+      line-height: 45px;
+      padding-top: 1.5px;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 25px;
+      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      text-decoration: none;
+      color: brown;
+      border-radius: 12px;
+      background: radial-gradient(
+          ellipse farthest-corner at right bottom,
+          #FFE38B 0%,
+          #FFF6C7 8%,
+          #FFF6C7 30%,
+          #FFF6C7 40%,
+          transparent 80%
+        ),
+        radial-gradient(
+          ellipse farthest-corner at left top,
+          #FFFFFF 0%,
+          #FFF6C7 8%,
+          #E8D293 25%,
+          #FFF6C7 62.5%,
+          #FFF6C7 100%
+        );
     }
-    .flipbook .hard .title2{
-        margin-bottom: 10px;
-        z-index: 11;
+
+    .flipbook .hard .title2 {
+      position: absolute;
+      top: 45%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin-bottom: 10px;
+      z-index: 11;
     }
-    .flipbook .hard .title3{
-        margin-bottom: 160px;
-        z-index: 11;
+
+    .flipbook .hard .title3 {
+      position: absolute;
+      top: 55%;
+      left: 0;
+      right: 0;
+      text-align: center;
+      margin-bottom: 160px;
+      z-index: 11;
     }
-    .flipbook .hard small{
+
+    .flipbook .hard small {
       font-style: italic;
       font-weight: lighter;
       opacity: 0.7;
@@ -96,69 +141,271 @@
     }
 
     .flipbook .page {
-        background-image: url("/images/page.png");
+      background-image: url("/images/page.png");
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-        gap: 10px;
-        border: 1px solid rgba(0, 0, 0, 0.11);
+      gap: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.11);
     }
 
-    .page img{
+    .page img {
       width: 70%;
       object-fit: cover;
       margin: auto;
     }
 
-    .flipbook .page small{
+    .page small {
       font-size: 14px;
-        margin-bottom: 10px;
+      margin-bottom: 10px;
     }
 
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      gap: 20px;
+    }
+
+    .control-button {
+      background: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 20px;
+    }
+
+    .control-button:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .control-button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .page-info {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    /* Responsive styles */
+    @media (max-width: 1024px) {
+      .flipbook {
+        width: 90%;
+        height: calc(90vw * 0.6);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .flipbook {
+        width: 95%;
+        height: calc(95vw * 0.6);
+      }
+
+      .flipbook .hard #chapter {
+        width: 120px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+      }
+
+      .flipbook .hard .title1,
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .flipbook {
+        width: 98%;
+        height: calc(98vw * 0.7);
+      }
+
+      .flipbook .hard #chapter {
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 16px;
+      }
+
+      .flipbook .hard .title1,
+      .flipbook .hard .title2,
+      .flipbook .hard .title3 {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <div class="flipbook">
-    <div class="hard">
-      <img src="/images/outer.jpeg" alt="">
-      <h3 id="hare">हरे कृष्ण</h3>
-      <h1 class="title1">श्रीमद्भगवद्गीता</h1>
-      <div id="chapter">अध्याय 3</div>
-      <h1 class="title2">|| कर्मयोग ||</h1>
-      <h1 class="title3">Karma Yoga</h1>
+  <div class="flipbook-container">
+    <div class="flipbook">
+      <div class="hard">
+        <img src="/images/outer.jpeg" alt="">
+        <h3 id="hare">हरे कृष्ण</h3>
+        <h1 class="title1">श्रीमद्भगवद्गीता</h1>
+        <div id="chapter">अध्याय 3</div>
+        <h1 class="title2">|| कर्मयोग ||</h1>
+        <h1 class="title3">Karma Yoga</h1>
+      </div>
+      <div class="hard">
+        <img src="/images/inner.png" alt="">
+      </div>
+      <div class="page">
+        <h2>Chapter 1</h2>
+        <p>The content of your book goes here...</p>
+      </div>
+      <div class="page">
+        <h2>Chapter 2</h2>
+        <p>More content goes here...</p>
+      </div>
+      <div class="page">
+        <h2>Chapter 3</h2>
+        <p>Even more content goes here...</p>
+      </div>
+      <div class="page">
+        <h2>Chapter 4</h2>
+        <p>The journey continues...</p>
+      </div>
+      <div class="page">
+        <h2>Chapter 5</h2>
+        <p>More wisdom to share...</p>
+      </div>
+      <div class="hard"></div>
+      <div class="hard"></div>
     </div>
-    <div class="hard">
-      <img src="/images/inner.png" alt="">
-    </div>
-    <div>
 
+    <div class="controls">
+      <button class="control-button prev-button" aria-label="Previous page">&#8592;</button>
+      <div class="page-info">
+        <span class="current-page">1</span> / <span class="total-pages">0</span>
+      </div>
+      <button class="control-button next-button" aria-label="Next page">&#8594;</button>
     </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div>
-      
-    </div>
-    <div class="hard"></div>
-    <div class="hard"></div>
   </div>
 
   <script src="/jquery.js"></script>
   <script src="/turn.js"></script>
   <script>
-    $(".flipbook").turn();
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize variables
+      let flipbook = $(".flipbook");
+      let prevButton = document.querySelector('.prev-button');
+      let nextButton = document.querySelector('.next-button');
+      let currentPageEl = document.querySelector('.current-page');
+      let totalPagesEl = document.querySelector('.total-pages');
+      
+      // Function to calculate dimensions
+      function calculateDimensions() {
+        let width, height;
+        
+        // Get window width
+        const windowWidth = window.innerWidth;
+        
+        if (windowWidth <= 480) {
+          width = windowWidth * 0.98;
+          height = width * 0.7;
+        } else if (windowWidth <= 768) {
+          width = windowWidth * 0.95;
+          height = width * 0.6;
+        } else if (windowWidth <= 1024) {
+          width = windowWidth * 0.9;
+          height = width * 0.6;
+        } else {
+          width = Math.min(windowWidth * 0.9, 1000);
+          height = 600;
+        }
+        
+        return { width, height };
+      }
+      
+      // Function to initialize or resize the flipbook
+      function initializeFlipbook() {
+        const dimensions = calculateDimensions();
+        
+        // Check if flipbook is already initialized
+        if (flipbook.data().turn) {
+          // Update size
+          flipbook.turn('size', dimensions.width, dimensions.height);
+        } else {
+          // Initialize flipbook
+          flipbook.turn({
+            width: dimensions.width,
+            height: dimensions.height,
+            autoCenter: true,
+            display: window.innerWidth < 768 ? 'single' : 'double',
+            acceleration: true,
+            elevation: 50,
+            gradients: true,
+            when: {
+              turned: function(e, page) {
+                updatePageInfo(page);
+              }
+            }
+          });
+          
+          // Set total pages
+          const totalPages = flipbook.turn('pages');
+          totalPagesEl.textContent = totalPages;
+          
+          // Initialize current page
+          updatePageInfo(flipbook.turn('page'));
+        }
+      }
+      
+      // Function to update page info
+      function updatePageInfo(page) {
+        currentPageEl.textContent = page;
+        
+        // Update button states
+        prevButton.disabled = page <= 1;
+        nextButton.disabled = page >= flipbook.turn('pages');
+      }
+      
+      // Initialize flipbook
+      initializeFlipbook();
+      
+      // Add event listeners for buttons
+      prevButton.addEventListener('click', function() {
+        flipbook.turn('previous');
+      });
+      
+      nextButton.addEventListener('click', function() {
+        flipbook.turn('next');
+      });
+      
+      // Add resize event listener
+      window.addEventListener('resize', function() {
+        // Debounce resize event
+        clearTimeout(window.resizeTimeout);
+        window.resizeTimeout = setTimeout(function() {
+          initializeFlipbook();
+        }, 200);
+      });
+      
+      // Add keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') {
+          flipbook.turn('previous');
+        } else if (e.key === 'ArrowRight') {
+          flipbook.turn('next');
+        }
+      });
+    });
   </script>
 </body>
 
 </html>
+
