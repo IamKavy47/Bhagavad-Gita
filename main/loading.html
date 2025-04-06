@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FDF7E9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .surya-chakra {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            animation: rotateSuryaChakra 10s linear infinite;
+        }
+        
+        .loading-container img {
+            mix-blend-mode: darken;
+        }
+        
+        @keyframes rotateSuryaChakra {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .golden-arrow-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            background-color: rgba(212, 175, 55, 0);
+            bottom: -50px;
+        }
+        
+        /* Just the tail position */
+        .tail {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 70.25%;
+            left: 650px;
+            z-index: 1;
+            
+        }
+        
+        /* Moving cover box that hides the tail */
+        .moving-cover {
+            position: relative;
+            height: 15px;
+            width: 60%;
+            background-color: #FDF7E9; /* Same as page background */
+            top: 64.5%;
+            z-index: 3; /* Above the tail but below the head */
+            animation: moveCover 3s linear infinite;
+        }
+        
+        .head {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 66.7%;
+            z-index: 4; /* Above everything */
+            animation: moveArrowHead 3s linear infinite;
+        }
+        
+        @keyframes moveArrowHead {
+            0% {
+                left: 300px;
+            }
+            100% {
+                left: 780px;
+            }
+        }
+        
+        @keyframes moveCover {
+            0% {
+                left: 300px;
+            }
+            100% {
+                left: 780px;
+            }
+        }
+        h3{
+          color: transparent;
+        }
+        @media only screen and (max-width: 600px) {
+          .head{
+            top: 110%;
+          }
+          .tail{
+            top: 110%;
+          }
+          h3{
+            color: #8B0000;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%,-50%);
+          }
+          .surya-chakra{
+            top: 30%;
+          }
+        }
+    .loading-text {
+      margin-top: 80px;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      color: var(--sacred-red);
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-container">
+            <!-- SVG for Surya Chakra (Sun Wheel) -->
+            <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
+            
+            <!-- Golden Arrow Loading Bar -->
+            <div class="golden-arrow-container">
+                <!-- Arrow line that extends -->
+                <div class="arrow-line"></div>
+                
+                <!-- Tail fixed at start position -->
+                <div class="tail"><img src="/images/tail.png" alt="arrow tail"></div>
+                
+                <!-- Moving cover that hides tail -->
+                <div class="moving-cover"></div>
+                
+                <!-- Head that moves across -->
+                <div class="head"><img src="/images/head.png" alt="arrow head"></div>
+                <h3>Loading...</h3>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

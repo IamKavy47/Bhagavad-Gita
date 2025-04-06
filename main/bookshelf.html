@@ -68,6 +68,7 @@
             height: 100%;
             background-color: #FDF7E9;
             display: flex;
+
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -129,7 +130,7 @@
         .moving-cover {
             position: relative;
             height: 15px;
-            width: 60%;
+            width: 40%;
             background-color: #FDF7E9; /* Same as page background */
             top: 64.5%;
             z-index: 3; /* Above the tail but below the head */
@@ -1119,11 +1120,23 @@
         font-size: 1.2rem;
       }
     }
+    .loading-container .frame{
+      position: absolute;
+      z-index: 11;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      object-fit: cover;
+      height: 100vh;
+      width: 100vw;
+    }
   </style>
 </head>
 <body>
   <div class="loading-screen">
     <div class="loading-container">
+      <img class="frame" src="/images/bg/framel.png" alt="">
+      <!-- <img src="/images/bg/framem.png" alt="" class="frame2"> -->
         <!-- SVG for Surya Chakra (Sun Wheel) -->
         <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
         
@@ -1560,6 +1573,15 @@
         createChapterCircles();
       });
     });
+
+    // frame change
+    const mobileWidth = 600;
+    if (window.innerWidth <= mobileWidth) {
+      const frame = document.getElementsByClassName('frame');
+      if (frame) {
+        frame.src = '/images/bg/framem.png'
+      }
+    }
   </script>
 </body>
 </html>
