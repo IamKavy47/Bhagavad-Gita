@@ -89,6 +89,10 @@
       height: 150px;
       animation: rotateSuryaChakra 10s linear infinite;
     }
+    .loading-container img{
+      mix-blend-mode: darken;
+      border-radius:50%;
+    }
 
     @keyframes rotateSuryaChakra {
       0% {
@@ -1068,37 +1072,7 @@
   <div class="loading-screen">
     <div class="loading-container">
       <!-- SVG for Surya Chakra (Sun Wheel) -->
-      <svg class="surya-chakra" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer circle -->
-        <circle cx="100" cy="100" r="90" fill="none" stroke="#D4AF37" stroke-width="2" />
-        
-        <!-- Inner circle -->
-        <circle cx="100" cy="100" r="30" fill="#A91B0D" />
-        <circle cx="100" cy="100" r="25" fill="#D4AF37" />
-        
-        <!-- Spokes -->
-        <g stroke="#D4AF37" stroke-width="3">
-          <!-- 24 spokes -->
-          <line x1="100" y1="10" x2="100" y2="190" />
-          <line x1="10" y1="100" x2="190" y2="100" />
-          <line x1="29" y1="29" x2="171" y2="171" />
-          <line x1="29" y1="171" x2="171" y2="29" />
-          
-          <line x1="50" y1="14" x2="150" y2="186" />
-          <line x1="14" y1="50" x2="186" y2="150" />
-          <line x1="14" y1="150" x2="186" y2="50" />
-          <line x1="50" y1="186" x2="150" y2="14" />
-          
-          <line x1="76" y1="10" x2="124" y2="190" />
-          <line x1="10" y1="76" x2="190" y2="124" />
-          <line x1="10" y1="124" x2="190" y2="76" />
-          <line x1="76" y1="190" x2="124" y2="10" />
-        </g>
-        
-        <!-- Decorative elements -->
-        <circle cx="100" cy="100" r="60" fill="none" stroke="#A91B0D" stroke-width="1" stroke-dasharray="5,5" />
-        <circle cx="100" cy="100" r="75" fill="none" stroke="#D4AF37" stroke-width="1" />
-      </svg>
+      <img src="https://gitaonline.vercel.app/sun.svg" class="surya-chakra" alt="">
       
       <!-- Golden Arrow Loading Bar -->
       <div class="golden-arrow-container">
