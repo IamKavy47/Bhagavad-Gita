@@ -57,78 +57,120 @@
       margin: 0 auto;
       padding: 2rem;
     }
+  
 
     /* IMPROVED: Loading Animation with SVG */
     .loading-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #FDF7E9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-
-    .loading-container {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .surya-chakra {
-      position: absolute;
-      width: 150px;
-      height: 150px;
-      animation: rotateSuryaChakra 10s linear infinite;
-    }
-    .loading-container img{
-      mix-blend-mode: darken;
-    }
-
-    @keyframes rotateSuryaChakra {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    .golden-arrow-container {
-      position: absolute;
-      width: 200px;
-      height: 15px;
-      background-color: rgba(212, 175, 55, 0.2);
-      border-radius: 5px;
-      overflow: hidden;
-      bottom: -50px;
-    }
-
-    .golden-arrow {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--sacred-red), var(--gold));
-      border-radius: 5px;
-      animation: fillArrow 3s ease-in-out forwards;
-    }
-
-    @keyframes fillArrow {
-      0% {
-        width: 0%;
-      }
-      100% {
-        width: 100%;
-      }
-    }
-
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FDF7E9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .surya-chakra {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            animation: rotateSuryaChakra 10s linear infinite;
+        }
+        
+        .loading-container img {
+            mix-blend-mode: darken;
+        }
+        
+        @keyframes rotateSuryaChakra {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .golden-arrow-container {
+            position: relative;
+            width: 80vw;
+            max-width: 800px;
+            height: 100%;
+            background-color: rgba(212, 175, 55, 0);
+            bottom: -50px;
+        }
+        
+        /* Just the tail position */
+        .tail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 70.25%;
+            left: 68vw;
+            z-index: 1;
+        }
+        
+        /* Moving cover box that hides the tail */
+        .moving-cover {
+            position: absolute;
+            height: 15px;
+            width: 60%;
+            background-color: #FDF7E9; /* Same as page background */
+            top: 58.5vh;
+            z-index: 3; /* Above the tail but below the head */
+            animation: moveCover 3s linear infinite;
+        }
+        
+        .head {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 70%;
+            z-index: 4; /* Above everything */
+            animation: moveArrowHead 3s linear infinite;
+        }
+        
+        @keyframes moveArrowHead {
+            0% {
+                left: 25vw;
+            }
+            100% {
+                left: 78vw;
+            }
+        }
+        
+        @keyframes moveCover {
+            0% {
+                left: 25vw;
+            }
+            100% {
+                left: 78vw;
+            }
+        }
+        
+        @keyframes extendLine {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 27vw;
+            }
+        }
     .loading-text {
       margin-top: 80px;
       font-family: 'Tiro Devanagari Sanskrit', serif;
@@ -1067,19 +1109,27 @@
   </style>
 </head>
 <body>
-  <!-- IMPROVED: Loading Animation with SVG -->
   <div class="loading-screen">
     <div class="loading-container">
-      <!-- SVG for Surya Chakra (Sun Wheel) -->
-      <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="">
-      
-      <!-- Golden Arrow Loading Bar -->
-      <div class="golden-arrow-container">
-        <div class="golden-arrow"></div>
-      </div>
+        <!-- SVG for Surya Chakra (Sun Wheel) -->
+        <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
+        
+        <!-- Golden Arrow Loading Bar -->
+        <div class="golden-arrow-container">
+            <!-- Arrow line that extends -->
+            <div class="arrow-line"></div>
+            
+            <!-- Tail fixed at start position -->
+            <div class="tail"><img src="/images/tail.png" alt="arrow tail"></div>
+            
+            <!-- Moving cover that hides tail -->
+            <div class="moving-cover"></div>
+            
+            <!-- Head that moves across -->
+            <div class="head"><img src="/images/head.png" alt="arrow head"></div>
+        </div>
     </div>
-    <!-- <div class="loading-text">Loading Bhagavad Gita...</div> -->
-  </div>
+</div>
 
   <div class="container">
     <div class="om-symbol">ॐ</div>
