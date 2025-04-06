@@ -84,19 +84,13 @@
     .mute-btn::before {
       content: "🔊";
     }
-    .rotate-wrapper {
-        transform-origin: center center;
-        transition: transform 0.3s ease;
-    }
-
-
+    
     audio {
       display: none;
     }
   </style>
 </head>
 <body>
-    <div class="rotate-wrapper">
         <main>
             <!-- Hidden autoplay audio (starts muted) -->
             <audio id="bg-audio" src="/images/bg.mp3" autoplay muted loop></audio>
@@ -112,8 +106,6 @@
             <!-- Mute/unmute button -->
             <button id="muteBtn" class="mute-btn"></button>
           </main>
-        
-    </div>
   <script>
     let currentImage = 1;
     const maxImages = 5;
@@ -176,21 +168,6 @@
         alert("You’ve reached the last image!");
       }
     }
-    function applyRotationIfPortrait() {
-        const wrapper = document.querySelector('.rotate-wrapper');
-        const isPortrait = window.innerHeight > window.innerWidth;
-
-        if (isPortrait) {
-            wrapper.style.transform = 'rotate(90deg) scale(1.3)';
-        } else {
-            wrapper.style.transform = 'none';
-        }
-    }
-
-        // Run on load and resize
-    window.addEventListener('load', applyRotationIfPortrait);
-    window.addEventListener('resize', applyRotationIfPortrait);
-
   </script>
 
 </body>
