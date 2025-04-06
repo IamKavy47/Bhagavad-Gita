@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vertical Slider to Change Image</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: sans-serif;
+    }
+
+    #image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+    }
+
+    main {
+      max-width: 95%;
+      max-height: 100%;
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .slider-container {
+      position: fixed;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 300px;
+      width: 6px;
+      background: red;
+      border-radius: 4px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .slider-thumb {
+      width: 45px;
+      height: 45px;
+      background: salmon;
+      border-radius: 50%;
+      cursor: grab;
+      touch-action: none;
+      transition: background 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .mute-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+
+    .mute-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .mute-btn.muted::before {
+      content: "🔇";
+    }
+
+    .mute-btn::before {
+      content: "🔊";
+    }
+    .rotate-wrapper {
+        transform-origin: center center;
+        transition: transform 0.3s ease;
+    }
+
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    <div class="rotate-wrapper">
+        <main>
+            <!-- Hidden autoplay audio (starts muted) -->
+            <audio id="bg-audio" src="/images/bg.mp3" autoplay muted loop></audio>
+        
+            <!-- Story image -->
+            <img id="image" src="/images/story/1.png" alt="Story" />
+        
+            <!-- Vertical slider -->
+            <div class="slider-container">
+              <div id="thumb" class="slider-thumb"></div>
+            </div>
+        
+            <!-- Mute/unmute button -->
+            <button id="muteBtn" class="mute-btn"></button>
+          </main>
+        
+    </div>
+  <script>
+    let currentImage = 1;
+    const maxImages = 5;
+    const thumb = document.getElementById("thumb");
+    const image = document.getElementById("image");
+    const containerHeight = 300;
+    const threshold = 250;
+
+    let startY = 0;
+    let currentY = 0;
+
+    const audio = document.getElementById("bg-audio");
+    const muteBtn = document.getElementById("muteBtn");
+
+    // Ensure audio plays on any user interaction
+    window.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play();
+      }
+    });
+
+    // Mute/unmute logic
+    muteBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // Prevent triggering play
+      audio.muted = !audio.muted;
+      muteBtn.classList.toggle("muted", audio.muted);
+    });
+
+    // Drag start
+    thumb.addEventListener("touchstart", (e) => {
+      startY = e.touches[0].clientY;
+      thumb.style.transition = 'none';
+    });
+
+    // Drag move
+    thumb.addEventListener("touchmove", (e) => {
+      const touchY = e.touches[0].clientY;
+      let diff = touchY - startY;
+      diff = Math.max(0, Math.min(diff, containerHeight - 40));
+      currentY = diff;
+      thumb.style.transform = `translateY(${diff}px)`;
+    });
+
+    // Drag end
+    thumb.addEventListener("touchend", () => {
+      if (currentY > threshold) {
+        goToNextImage();
+      }
+      thumb.style.transition = 'transform 0.3s ease';
+      thumb.style.transform = 'translateY(0px)';
+      currentY = 0;
+    });
+
+    function goToNextImage() {
+      if (currentImage < maxImages) {
+        currentImage++;
+        const newSrc = `/images/story/${currentImage}.png`;
+        image.src = newSrc;
+      } else {
+        alert("You’ve reached the last image!");
+      }
+    }
+    function applyRotationIfPortrait() {
+        const wrapper = document.querySelector('.rotate-wrapper');
+        const isPortrait = window.innerHeight > window.innerWidth;
+
+        if (isPortrait) {
+            wrapper.style.transform = 'rotate(90deg) scale(1.3)';
+        } else {
+            wrapper.style.transform = 'none';
+        }
+    }
+
+        // Run on load and resize
+    window.addEventListener('load', applyRotationIfPortrait);
+    window.addEventListener('resize', applyRotationIfPortrait);
+
+  </script>
+
+</body>
+</html>
