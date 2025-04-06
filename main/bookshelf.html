@@ -1,41 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhagavad Gita - 18 Divine Chapters</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhagavad Gita - Sacred Wisdom</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&display=swap');
-    
+    :root {
+      --saffron: #FF9933;
+      --white: #FFFFFF;
+      --green: #138808;
+      --blue: #000080;
+      --gold: #D4AF37;
+      --copper: #B87333;
+      --ochre: #CC7722;
+      --earth: #5E3B23;
+      --leaf: #556B2F;
+      --lotus: #E8BFB5;
+      --sacred-red: #A91B0D;
+      --sacred-yellow: #F2D03B;
+      --peacock-blue: #0C6170;
+      --peacock-green: #2E8B57;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
     }
-    
-    :root {
-      --bookshelf-wood: #754c24;
-      --bookshelf-trim: #5a3921;
-      --gold-gradient: linear-gradient(135deg, #f6e27a, #d4af37, #f6e27a);
-      --page-color: #f8f0d8;
-      --title-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-    
+
     body {
-      min-height: 100vh;
-      width: 100%;
-      background: url('https://images.unsplash.com/photo-1604147706283-d7119b5b822c?q=80&w=2000') no-repeat center center fixed;
-      background-size: cover;
-      padding: 2rem;
+      font-family: 'Poppins', sans-serif;
+      background-color: #FDF7E9;
+      color: #333;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background-image: url('https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-attachment: fixed;
+      background-position: center;
     }
-    
+
     body::before {
       content: '';
       position: fixed;
@@ -43,856 +48,1481 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(224, 211, 175, 0.9), rgba(248, 233, 194, 0.85));
+      background: rgba(253, 247, 233, 0.92);
       z-index: -1;
     }
-    
-    .bookshelf-container {
+
+    .container {
       max-width: 1400px;
-      width: 100%;
       margin: 0 auto;
-      position: relative;
+      padding: 2rem;
     }
-    
-    h1 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: #f8bc18;
-      text-shadow: var(--title-shadow);
-      font-size: clamp(1.8rem, 4vw, 3rem);
-      background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-      background-color: var(--bookshelf-wood);
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    h1::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.8) 50%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      animation: shine 2.5s infinite;
-    }
-    
-    @keyframes shine {
-      0% { left: -100%; }
-      20% { left: 100%; }
-      100% { left: 100%; }
-    }
-    
-    /* Realistic bookshelf styling */
-    .bookshelf-wrapper {
-      position: relative;
-      margin-bottom: 50px;
-      perspective: 1000px;
-    }
-    
-    .bookshelf {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-      gap: clamp(1rem, 2vw, 2rem);
-      justify-content: center;
-      padding: 2.5rem 1.5rem 1.5rem;
-      position: relative;
-      border-radius: 8px;
-      margin-bottom: 40px;
-      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-      background-color: var(--bookshelf-wood);
-      box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.5),
-        inset 0 2px 10px rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Top shelf trim */
-    .bookshelf::before {
-      content: '';
-      position: absolute;
+
+    /* IMPROVED: Loading Animation with SVG */
+    .loading-screen {
+      position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      height: 20px;
-      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-      background-color: #8e723d;
-      border-radius: 8px 8px 0 0;
-      box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Bottom shelf support */
-    .bookshelf::after {
-      content: '';
-      position: absolute;
-      bottom: -35px;
-      left: -10px;
-      right: -10px;
-      height: 15px;
-      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-      background-color: var(--bookshelf-trim);
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-    
-    /* Shelf dividers */
-    .shelf-divider {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 1px;
-      /* background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); */
-      /* background-color: #8e723d; */
-      box-shadow: 
-        0 5px 10px rgba(0, 0, 0, 0.3),
-        inset 0 2px 5px rgba(255, 255, 255, 0.1);
-      z-index: 1;
-    }
-    
-    .shelf-divider-1 {
-      top: 33%;
-    }
-    
-    .shelf-divider-2 {
-      top: 66%;
-    }
-    
-    /* Vertical supports */
-    .shelf-support {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      /* background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); */
-      /* background-color: #8e723d; */
-      box-shadow: 
-        0 0 10px rgba(0, 0, 0, 0.3),
-        inset 0 0 5px rgba(255, 255, 255, 0.1);
-      z-index: 1;
-    }
-    
-    .shelf-support-left {
-      left: 20%;
-    }
-    
-    .shelf-support-right {
-      right: 20%;
-    }
-    
-    /* Back panel texture */
-    .shelf-back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-      background-color: #a67c52;
-      z-index: -1;
-      border-radius: 8px;
-      opacity: 0.8;
-    }
-    
-    /* Book styling */
-    .book {
-      height: 200px;
-      width: 100%;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      transform-origin: bottom center;
-      perspective: 1000px;
-      margin-bottom: 1rem;
-      z-index: 2;
-    }
-    
-    .book-cover {
-      position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 3px 8px 8px 3px;
-      box-shadow: 
-        -5px 5px 15px rgba(0, 0, 0, 0.6),
-        inset 0 0 30px rgba(0, 0, 0, 0.2);
+      background-color: #FDF7E9;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .surya-chakra {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      animation: rotateSuryaChakra 10s linear infinite;
+    }
+
+    @keyframes rotateSuryaChakra {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .golden-arrow-container {
+      position: absolute;
+      width: 200px;
+      height: 15px;
+      background-color: rgba(212, 175, 55, 0.2);
+      border-radius: 5px;
+      overflow: hidden;
+      bottom: -50px;
+    }
+
+    .golden-arrow {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--sacred-red), var(--gold));
+      border-radius: 5px;
+      animation: fillArrow 3s ease-in-out forwards;
+    }
+
+    @keyframes fillArrow {
+      0% {
+        width: 0%;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    .loading-text {
+      margin-top: 80px;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      color: var(--sacred-red);
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .om-symbol {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 5rem;
+      color: var(--sacred-red);
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0;
+      position: relative;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .header-decoration {
+      position: relative;
+      height: 3px;
+      width: 80%;
+      max-width: 600px;
+      margin: 2rem auto;
+      background: linear-gradient(to right, transparent, var(--sacred-red), transparent);
+    }
+
+    .header-decoration::before,
+    .header-decoration::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background-color: var(--sacred-red);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .header-decoration::before {
+      left: 0;
+    }
+
+    .header-decoration::after {
+      right: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--sacred-red);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--earth);
+      margin-top: 1rem;
+    }
+
+    .intro-text {
+      max-width: 800px;
+      margin: 0 auto 4rem;
+      text-align: center;
+      line-height: 1.8;
+      color: var(--earth);
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* Mahabharata Context Section */
+    .mahabharata-section {
+      position: relative;
+      padding: 4rem 0;
+      margin-bottom: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .mahabharata-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .mahabharata-title {
+      text-align: center;
+      color: var(--sacred-red);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .mahabharata-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--sacred-red), transparent);
+    }
+
+    .mahabharata-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
       justify-content: center;
       align-items: center;
-      background-image: url('/images/outer.jpeg');
-      background-size: cover;
-      background-position: center;
-      overflow: hidden;
-      padding: 10px;
-      text-align: center;
-      transform-style: preserve-3d;
-      transform: rotateY(0deg);
-      transition: transform 0.5s ease;
-      border-left: 5px solid #8B4513;
     }
 
-    .book-cover::before {
+    .mahabharata-image {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      height: 350px;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .mahabharata-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .mahabharata-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .mahabharata-image::after {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        linear-gradient(
-          135deg, 
-          rgba(255, 215, 0, 0.3), 
-          rgba(139, 69, 19, 0.3)
-        );
-      z-index: 1;
-    }
-    
-    .book-spine {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 5px;
+      width: 100%;
       height: 100%;
-      background: linear-gradient(to right, #5a3921, #8B4513);
-      border-radius: 3px 0 0 3px;
-      z-index: 2;
+      background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.7));
     }
-    
-    .book-edge {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(to left, rgba(255,255,255,0.5), rgba(0,0,0,0.1));
-      z-index: 2;
-    }
-    
-    .book-pages {
-      position: absolute;
-      right: 1px;
-      top: 3px;
-      bottom: 3px;
-      width: 1px;
-      background: var(--page-color);
-      z-index: 3;
-      transform: rotateY(20deg);
-    }
-    
-    .hare-krishna {
-      position: absolute;
-      top: 17px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-      z-index: 3;
-      font-size: clamp(8px, 1vw, 12px);
-      font-family: 'Tiro Devanagari Sanskrit', serif;
-    }
-    
-    .book-title-sanskrit {
-      position: absolute;
-      top: 35px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-      z-index: 3;
-      font-size: clamp(8px, 1vw, 12px);
-      font-family: 'Tiro Devanagari Sanskrit', serif;
-    }
-    
-    .chapter-badge {
-      position: absolute;
-      top: 60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 25px;
-      line-height: 25px;
-      text-align: center;
-      font-size: clamp(10px, 1vw, 14px);
-      font-weight: bold;
-      color: brown;
-      border-radius: 5px;
-      z-index: 3;
-      background: var(--gold-gradient);
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-      font-family: 'Tiro Devanagari Sanskrit', serif;
-    }
-    
-    .book-title-sanskrit-name {
-      position: absolute;
-      top: 115px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-weight: bold;
-      color: white;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-      z-index: 3;
-      font-size: clamp(8px, 1vw, 12px);
-      font-family: 'Tiro Devanagari Sanskrit', serif;
-    }
-    
-    .book-title {
+
+    .mahabharata-image-caption {
       position: absolute;
       bottom: 20px;
-      left: 0;
-      right: 0;
+      left: 20px;
       color: white;
-      font-size: clamp(10px, 1vw, 14px);
-      text-align: center;
-      font-weight: bold;
-      z-index: 2;
-      width: 100%;
-      border-radius: 4px;
-      word-wrap: break-word;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-    }
-    
-    .book:hover {
-      transform: scale(1.08) translateY(-15px) rotateX(5deg);
-      z-index: 10;
+      font-size: 1.2rem;
+      z-index: 1;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
     }
 
-    .book:hover .book-cover {
-      box-shadow: 
-        -8px 8px 25px rgba(255, 215, 0, 0.4),
-        inset 0 0 30px rgba(255, 215, 0, 0.2);
+    .mahabharata-text {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      line-height: 1.8;
+      color: var(--earth);
+      font-size: 1.1rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      border-left: 3px solid var(--sacred-red);
     }
-    
-    /* Divine color variations for book spines */
-    .book:nth-child(6n+1) .book-spine {
-      background: linear-gradient(to right, #8B4513, #B8860B);
+
+    .mahabharata-text p {
+      margin-bottom: 1rem;
     }
-    
-    .book:nth-child(6n+2) .book-spine {
-      background: linear-gradient(to right, #4B0082, #800080);
+
+    .chapters-section {
+      position: relative;
+      padding: 2rem 0;
     }
-    
-    .book:nth-child(6n+3) .book-spine {
-      background: linear-gradient(to right, #8B0000, #FF5733);
+
+    .section-title {
+      text-align: center;
+      color: var(--sacred-red);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 1s ease;
     }
-    
-    .book:nth-child(6n+4) .book-spine {
-      background: linear-gradient(to right, #004d00, #006400);
-    }
-    
-    .book:nth-child(6n+5) .book-spine {
-      background: linear-gradient(to right, #8B0000, #B22222);
-    }
-    
-    .book:nth-child(6n) .book-spine {
-      background: linear-gradient(to right, #2F0459, #4B0082);
-    }
-    
-    /* Divine glow on hover */
-    .book:hover::after {
+
+    .section-title::after {
       content: '';
       position: absolute;
-      width: 150%;
-      height: 150%;
-      top: -25%;
-      left: -25%;
-      background: radial-gradient(circle at center, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0) 70%);
-      z-index: -1;
-      pointer-events: none;
-      animation: pulse 2s infinite;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--sacred-red), transparent);
     }
-    
-    @keyframes pulse {
-      0% { opacity: 0.4; }
-      50% { opacity: 0.8; }
-      100% { opacity: 0.4; }
+
+    /* Enhanced Mandala Container */
+    .mandala-container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      aspect-ratio: 1;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 1.5s ease, transform 1.5s ease;
     }
-    
-    /* Decorative elements */
-    .lotus-decoration {
+
+    .mandala-bg {
       position: absolute;
-      width: 100px;
-      height: 100px;
-      background-image: url('https://cdn-icons-png.flaticon.com/512/6268/6268417.png');
+      width: 100%;
+      height: 100%;
+      background-image: url('/images/gyan.jpg');
       background-size: contain;
+      background-position: center;
       background-repeat: no-repeat;
-      opacity: 0.2;
-      z-index: -1;
+      opacity: 0.25;
+      border-radius: 50%;
     }
-    
-    .lotus-1 {
-      top: 10%;
-      left: 5%;
-      transform: rotate(-15deg);
-    }
-    
-    .lotus-2 {
-      bottom: 10%;
-      right: 5%;
-      transform: rotate(15deg);
-    }
-    
-    /* Bookshelf lighting effect */
-    .shelf-lighting {
+
+    /* FIXED: Rays are now perfectly centered behind the Gita text */
+    .mandala-rays {
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.1) 0%,
-        rgba(255, 255, 255, 0) 20%,
-        rgba(0, 0, 0, 0) 80%,
-        rgba(0, 0, 0, 0.2) 100%
-      );
-      pointer-events: none;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s ease 0.5s;
+    }
+
+    /* IMPROVED: Enhanced ray animation and positioning */
+    .mandala-ray {
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      width: 2px;
+      background: linear-gradient(to top, var(--sacred-red) 20%, var(--gold) 60%, transparent 100%);
+      /* transform-origin: center bottom;*/
+      /* transform: translate(-50%,-50%); */
+      animation: rayGlow 2s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes rayGlow {
+      0% {
+        opacity: 0.3;
+        box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+      }
+      100% {
+        opacity: 0.8;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+      }
+    }
+
+    .mandala-inner-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--sacred-yellow) 0%, var(--sacred-red) 100%);
+      box-shadow: 0 0 30px rgba(169, 27, 13, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 2rem;
       z-index: 2;
-      border-radius: 8px;
+      opacity: 0;
+      transition: opacity 1s ease, transform 0.5s ease;
+      animation: pulseGlow 3s infinite alternate;
     }
-    
-    /* Responsive styles */
-    @media (max-width: 1200px) {
-      .bookshelf {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+
+    @keyframes pulseGlow {
+      0% {
+        box-shadow: 0 0 20px rgba(169, 27, 13, 0.3);
       }
-      
-      .book {
-        height: 180px;
-      }
-      
-      .shelf-support-left {
-        left: 10%;
-      }
-      
-      .shelf-support-right {
-        right: 10%;
-      }
-      .book-title-sanskrit-name{
-        top:95px;
-      }
-      .book-title{
-        top:109px;
-      }
-      .hare-krishna{
-        top:20px;
-      }
-      .chapter-badge{
-        padding-top: 2px;
+      100% {
+        box-shadow: 0 0 40px rgba(242, 208, 59, 0.5);
       }
     }
-    
-    @media (max-width: 992px) {
-      .bookshelf {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        padding: 2rem 1rem 1rem;
-      }
-      
-      .book {
-        height: 180px;
-      }
-      .chapter-badge{
-        padding-top: 2px;
-      }
-      
-      .shelf-support {
-        display: none;
-      }
-      .hare-krishna{
-        top: 21px;
-      }
-      .book-title-sanskrit-name{
-        top:95px;
-      }
-      .book-title{
-        top:109px;
-      }
-      
+
+    .mandala-inner-circle:hover {
+      transform: translate(-50%, -50%) scale(1.1);
     }
-    
+
+    /* Enhanced Chapter Items with Mahabharata elements */
+    .chapter-item {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--lotus), #FDF7E9);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      border: 2px solid var(--sacred-red);
+      overflow: hidden;
+      transform: scale(0);
+      opacity: 0;
+      z-index: 3;
+    }
+
+    /* ADDED: Mahabharata symbol in the background of each chapter */
+    .chapter-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: 50%;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+      transition: opacity 0.3s ease, transform 0.5s ease;
+    }
+
+    /* IMPROVED: Enhanced chakra rotation effect */
+    .chapter-item::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        transparent 0deg,
+        rgba(169, 27, 13, 0.05) 90deg,
+        transparent 180deg,
+        rgba(242, 208, 59, 0.05) 270deg,
+        transparent 360deg
+      );
+      opacity: 0.3;
+      transform: rotate(0deg);
+      z-index: -1;
+      animation: rotateChakra 20s linear infinite;
+    }
+
+    @keyframes rotateChakra {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .chapter-item:hover {
+      transform: scale(1.15) !important;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      border-color: var(--gold);
+    }
+
+    .chapter-item:hover::before {
+      opacity: 0.2;
+      transform: scale(1.1);
+    }
+
+    .chapter-item:hover::after {
+      opacity: 0.4;
+      animation: rotateChakra 10s linear infinite;
+    }
+
+    /* ADDED: Mahabharata symbol for each chapter */
+    .chapter-item:nth-child(1)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/bow-arrow.png'); }
+    .chapter-item:nth-child(2)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/chariot.png'); }
+    .chapter-item:nth-child(3)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/lotus.png'); }
+    .chapter-item:nth-child(4)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/wheel.png'); }
+    .chapter-item:nth-child(5)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/conch.png'); }
+    .chapter-item:nth-child(6)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/mace.png'); }
+    .chapter-item:nth-child(7)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/lotus.png'); }
+    .chapter-item:nth-child(8)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/wheel.png'); }
+    .chapter-item:nth-child(9)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/bow-arrow.png'); }
+    .chapter-item:nth-child(10)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/chariot.png'); }
+    .chapter-item:nth-child(11)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/conch.png'); }
+    .chapter-item:nth-child(12)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/mace.png'); }
+    .chapter-item:nth-child(13)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/lotus.png'); }
+    .chapter-item:nth-child(14)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/wheel.png'); }
+    .chapter-item:nth-child(15)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/bow-arrow.png'); }
+    .chapter-item:nth-child(16)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/chariot.png'); }
+    .chapter-item:nth-child(17)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/conch.png'); }
+    .chapter-item:nth-child(18)::before { background-image: url('https://i.ibb.co/Jt2kDQJ/mace.png'); }
+
+    /* IMPROVED: Enhanced glowing border animation */
+    .chapter-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 0 0 15px var(--sacred-yellow);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.3s ease;
+    }
+
+    .chapter-item:hover .chapter-glow {
+      opacity: 0.7;
+      animation: glowPulse 1.5s infinite alternate;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        box-shadow: 0 0 10px var(--sacred-yellow);
+      }
+      100% {
+        box-shadow: 0 0 20px var(--sacred-red);
+      }
+    }
+
+    .chapter-number {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--sacred-red);
+      margin-bottom: 0.2rem;
+      position: relative;
+      z-index: 1;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .chapter-item:hover .chapter-number {
+      color: var(--gold);
+      transform: translateY(-5px);
+    }
+
+    .chapter-name {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 0.7rem;
+      color: var(--earth);
+      position: relative;
+      z-index: 1;
+      padding: 0 5px;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .chapter-item:hover .chapter-name {
+      transform: translateY(-5px);
+    }
+
+    .chapter-sanskrit {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 0.65rem;
+      color: var(--sacred-red);
+      position: absolute;
+      bottom: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    }
+
+    .chapter-item:hover .chapter-sanskrit {
+      opacity: 1;
+      transform: translateY(0);
+      color: var(--gold);
+    }
+
+    /* Enhanced Chapter Details */
+    .chapter-details {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    .chapter-details.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .details-content {
+      width: 90%;
+      max-width: 700px;
+      background: url('https://images.unsplash.com/photo-1604632908165-32c9b7a7cfb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center center;
+      background-size: cover;
+      border-radius: 10px;
+      padding: 3rem;
+      position: relative;
+      color: #333;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: scale(0.9);
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .chapter-details.active .details-content {
+      transform: scale(1);
+    }
+
+    .details-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(253, 247, 233, 0.95);
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    .details-border {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 2px solid var(--sacred-red);
+      border-radius: 5px;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .details-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .details-title {
+      font-size: 1.8rem;
+      color: var(--sacred-red);
+      margin-bottom: 0.5rem;
+    }
+
+    .details-sanskrit {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 1.4rem;
+      color: var(--earth);
+      margin-bottom: 1rem;
+    }
+
+    .details-description {
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      color: var(--earth);
+    }
+
+    .details-verse {
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      padding: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      position: relative;
+      border-left: 3px solid var(--sacred-red);
+    }
+
+    .details-verse::before,
+    .details-verse::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--sacred-red);
+      position: absolute;
+      opacity: 0.3;
+    }
+
+    .details-verse::before {
+      top: -10px;
+      left: 10px;
+    }
+
+    .details-verse::after {
+      bottom: -30px;
+      right: 10px;
+    }
+
+    .details-verse-sanskrit {
+      margin-bottom: 1rem;
+      color: var(--sacred-red);
+    }
+
+    .details-verse-english {
+      color: var(--earth);
+    }
+
+    .read-more-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--sacred-red), #8B0000);
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(169, 27, 13, 0.3);
+    }
+
+    .read-more-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(169, 27, 13, 0.4);
+    }
+
+    .read-more-btn:active {
+      transform: translateY(1px);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--sacred-red);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border: none;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      transform: rotate(90deg);
+      background-color: var(--gold);
+    }
+
+    /* Key Teachings Section */
+    .teachings-section {
+      padding: 4rem 0;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .teachings-title {
+      text-align: center;
+      color: var(--sacred-red);
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      margin-bottom: 3rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .teachings-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--sacred-red), transparent);
+    }
+
+    .teachings-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .teaching-card {
+      flex: 1;
+      min-width: 250px;
+      max-width: 350px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid var(--sacred-red);
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .teaching-card:hover {
+      transform: translateY(-10px) !important;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .teaching-icon {
+      font-size: 2.5rem;
+      color: var(--sacred-red);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .teaching-title {
+      font-size: 1.3rem;
+      color: var(--sacred-red);
+      margin-bottom: 1rem;
+      text-align: center;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+    }
+
+    .teaching-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--earth);
+      text-align: center;
+    }
+
+    .teaching-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--sacred-red), var(--sacred-yellow));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .teaching-card:hover::before {
+      opacity: 1;
+    }
+
+    .quote-section {
+      padding: 6rem 0;
+      text-align: center;
+      position: relative;
+      margin-top: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .quote-decoration {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 2rem;
+    }
+
+    .quote-decoration::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background-color: var(--sacred-red);
+    }
+
+    .quote-decoration::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 2px;
+      background-color: var(--sacred-red);
+    }
+
+    .quote-lotus {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      background-color: var(--lotus);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sacred-red);
+      font-size: 1.5rem;
+      box-shadow: 0 0 0 5px rgba(169, 27, 13, 0.1);
+    }
+
+    .quote {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: 'Tiro Devanagari Sanskrit', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      line-height: 1.8;
+      color: var(--earth);
+      position: relative;
+      padding: 2rem;
+    }
+
+    .quote-sanskrit {
+      margin-bottom: 1rem;
+      color: var(--sacred-red);
+    }
+
+    .quote-english {
+      color: var(--earth);
+    }
+
+    .quote-author {
+      margin-top: 2rem;
+      color: var(--sacred-red);
+      font-weight: 500;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .footer-decoration {
+      height: 1px;
+      width: 80%;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      background: linear-gradient(to right, transparent, var(--sacred-red), transparent);
+    }
+
+    .footer-text {
+      color: var(--earth);
+      font-size: 0.9rem;
+    }
+
     @media (max-width: 768px) {
-      body {
+      .container {
         padding: 1rem;
       }
       
-      .bookshelf {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        padding: 1.5rem 0.8rem 0.8rem;
-        gap: 1rem;
+      .chapter-item {
+        width: 90px;
+        height: 90px;
       }
       
-      .book {
-        height: 180px;
+      .chapter-number {
+        font-size: 1.5rem;
       }
       
-      h1 {
-        padding: 0.8rem;
-        margin-bottom: 1.5rem;
+      .chapter-name {
+        font-size: 0.6rem;
       }
       
-      .chapter-badge {
-        top: 55px;
-        width: 50px;
-        height: 20px;
-        line-height: 20px;
+      .chapter-sanskrit {
+        font-size: 0.55rem;
       }
       
-      .book-title-sanskrit-name {
-        top: 100px;
+      .details-content {
+        padding: 2rem;
+      }
+      
+      .mahabharata-content {
+        flex-direction: column;
+      }
+      
+      .mahabharata-image {
+        max-width: 100%;
       }
     }
-    
-    @media (max-width: 576px) {
-      .bookshelf {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.8rem;
+
+    @media (max-width: 480px) {
+      .chapter-item {
+        width: 70px;
+        height: 70px;
       }
       
-      .book {
-        height: 215px;
-      }
-      .hare-krishna {
-        top: 22px;
-      }
-      .chapter-badge {
-        top: 65px;
-        padding-top: 2px;
-        width: 40px;
-        height: 18px;
-        line-height: 18px;
+      .chapter-number {
+        font-size: 1.2rem;
       }
       
-      .book-title-sanskrit-name {
-        top: 95px;
+      .chapter-name {
+        font-size: 0.5rem;
       }
       
-      .book-title {
-        bottom: 88px;
+      .chapter-sanskrit {
+        font-size: 0.45rem;
       }
       
-      .shelf-divider {
-        height: 10px;
-      }
-    }
-    
-    @media (max-width: 400px) {
-      .bookshelf {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-        gap: 0.6rem;
+      .details-content {
+        padding: 1.5rem;
       }
       
-      .book {
-        height: 180px;
+      .details-title {
+        font-size: 1.5rem;
       }
       
-      .hare-krishna {
-        top: 10px;
-      }
-      
-      .book-title-sanskrit {
-        top: 25px;
-      }
-      
-      .chapter-badge {
-        top: 45px;
-        width: 35px;
-        height: 16px;
-        line-height: 16px;
-      }
-      
-      .book-title-sanskrit-name {
-        top: 75px;
+      .details-sanskrit {
+        font-size: 1.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="lotus-decoration lotus-1"></div>
-  <div class="lotus-decoration lotus-2"></div>
-  
-  <div class="bookshelf-container">
-    <h1>श्रीमद्भगवद्गीता - Divine Wisdom</h1>
-    
-    <div class="bookshelf-wrapper">
-      <div class="bookshelf">
-        <!-- Shelf dividers -->
-        <div class="shelf-divider shelf-divider-1"></div>
-        <div class="shelf-divider shelf-divider-2"></div>
+  <!-- IMPROVED: Loading Animation with SVG -->
+  <div class="loading-screen">
+    <div class="loading-container">
+      <!-- SVG for Surya Chakra (Sun Wheel) -->
+      <svg class="surya-chakra" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer circle -->
+        <circle cx="100" cy="100" r="90" fill="none" stroke="#D4AF37" stroke-width="2" />
         
-        <!-- Vertical supports -->
-        <div class="shelf-support shelf-support-left"></div>
-        <div class="shelf-support shelf-support-right"></div>
+        <!-- Inner circle -->
+        <circle cx="100" cy="100" r="30" fill="#A91B0D" />
+        <circle cx="100" cy="100" r="25" fill="#D4AF37" />
         
-        <!-- Back panel -->
-        <div class="shelf-back"></div>
+        <!-- Spokes -->
+        <g stroke="#D4AF37" stroke-width="3">
+          <!-- 24 spokes -->
+          <line x1="100" y1="10" x2="100" y2="190" />
+          <line x1="10" y1="100" x2="190" y2="100" />
+          <line x1="29" y1="29" x2="171" y2="171" />
+          <line x1="29" y1="171" x2="171" y2="29" />
+          
+          <line x1="50" y1="14" x2="150" y2="186" />
+          <line x1="14" y1="50" x2="186" y2="150" />
+          <line x1="14" y1="150" x2="186" y2="50" />
+          <line x1="50" y1="186" x2="150" y2="14" />
+          
+          <line x1="76" y1="10" x2="124" y2="190" />
+          <line x1="10" y1="76" x2="190" y2="124" />
+          <line x1="10" y1="124" x2="190" y2="76" />
+          <line x1="76" y1="190" x2="124" y2="10" />
+        </g>
         
-        <!-- Lighting effect -->
-        <div class="shelf-lighting"></div>
-        
-        <!-- Books -->
-        <a href="/main/books/book1.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 1</div>
-              <div class="book-title-sanskrit-name">|| अर्जुन विषाद योग ||</div>
-              <div class="book-title">Arjuna Vishada Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book2.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 2</div>
-              <div class="book-title-sanskrit-name">|| सांख्य योग ||</div>
-              <div class="book-title">Sankhya Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book3.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 3</div>
-              <div class="book-title-sanskrit-name">|| कर्मयोग ||</div>
-              <div class="book-title">Karma Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book4.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 4</div>
-              <div class="book-title-sanskrit-name">|| ज्ञान योग ||</div>
-              <div class="book-title">Jnana Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book5.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 5</div>
-              <div class="book-title-sanskrit-name">|| कर्म संन्यास योग ||</div>
-              <div class="book-title">Karma Sanyasa Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book6.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 6</div>
-              <div class="book-title-sanskrit-name">|| ध्यान योग ||</div>
-              <div class="book-title">Dhyana Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book7.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 7</div>
-              <div class="book-title-sanskrit-name">|| ज्ञान विज्ञान योग ||</div>
-              <div class="book-title">Jnana Vijnana Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book8.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 8</div>
-              <div class="book-title-sanskrit-name">|| अक्षर ब्रह्म योग ||</div>
-              <div class="book-title">Akshara Brahma Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book9.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 9</div>
-              <div class="book-title-sanskrit-name">|| राज विद्या योग ||</div>
-              <div class="book-title">Raja Vidya Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book10.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 10</div>
-              <div class="book-title-sanskrit-name">|| विभूति योग ||</div>
-              <div class="book-title">Vibhuti Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book11.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 11</div>
-              <div class="book-title-sanskrit-name">|| विश्वरूप दर्शन योग ||</div>
-              <div class="book-title">Vishwarupa Darshana Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book12.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 12</div>
-              <div class="book-title-sanskrit-name">|| भक्ति योग ||</div>
-              <div class="book-title">Bhakti Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book13.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 13</div>
-              <div class="book-title-sanskrit-name">|| क्षेत्र क्षेत्रज्ञ योग ||</div>
-              <div class="book-title">Kshetra Kshetrajna Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book14.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 14</div>
-              <div class="book-title-sanskrit-name">|| गुणत्रय विभाग योग ||</div>
-              <div class="book-title">Gunatraya Vibhaga Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book15.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 15</div>
-              <div class="book-title-sanskrit-name">|| पुरुषोत्तम योग ||</div>
-              <div class="book-title">Purushottama Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book16.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 16</div>
-              <div class="book-title-sanskrit-name">|| दैवासुर संपद योग ||</div>
-              <div class="book-title">Daivasura Sampad Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book17.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 17</div>
-              <div class="book-title-sanskrit-name">|| श्रद्धात्रय विभाग योग ||</div>
-              <div class="book-title">Shraddhatraya Vibhaga Yoga</div>
-            </div>
-          </div>
-        </a>
-        <a href="/main/books/book18.html">
-          <div class="book">
-            <div class="book-spine"></div>
-            <div class="book-cover">
-              <div class="book-edge"></div>
-              <div class="book-pages"></div>
-              <div class="hare-krishna">हरे कृष्ण</div>
-              <div class="book-title-sanskrit">श्रीमद्भगवद्गीता</div>
-              <div class="chapter-badge">अध्याय 18</div>
-              <div class="book-title-sanskrit-name">|| मोक्ष संन्यास योग ||</div>
-              <div class="book-title">Moksha Sanyasa Yoga</div>
-            </div>
-          </div>
-        </a>
+        <!-- Decorative elements -->
+        <circle cx="100" cy="100" r="60" fill="none" stroke="#A91B0D" stroke-width="1" stroke-dasharray="5,5" />
+        <circle cx="100" cy="100" r="75" fill="none" stroke="#D4AF37" stroke-width="1" />
+      </svg>
+      
+      <!-- Golden Arrow Loading Bar -->
+      <div class="golden-arrow-container">
+        <div class="golden-arrow"></div>
       </div>
     </div>
+    <!-- <div class="loading-text">Loading Bhagavad Gita...</div> -->
   </div>
+
+  <div class="container">
+    <div class="om-symbol">ॐ</div>
+    
+    <header>
+      <h1>Bhagavad Gita</h1>
+      <div class="subtitle">श्रीमद्भगवद्गीता - Sacred Wisdom</div>
+      <div class="header-decoration"></div>
+    </header>
+    
+    <div class="intro-text">
+      <p>The Bhagavad Gita, often referred to as the Gita, is a 700-verse Hindu scripture that is part of the epic Mahabharata. It contains a conversation between Prince Arjuna and Lord Krishna on a variety of philosophical issues. Faced with a fratricidal war, a despondent Arjuna turns to his charioteer Krishna for counsel, resulting in a profound dialogue that presents the essence of Hindu philosophy and wisdom.</p>
+    </div>
+    
+    <!-- New Mahabharata Context Section -->
+    <div class="mahabharata-section">
+      <div class="mahabharata-container">
+        <h2 class="mahabharata-title">The Mahabharata Context</h2>
+        <div class="mahabharata-content">
+          <div class="mahabharata-image">
+            <img src="https://images.unsplash.com/photo-1606487469852-13620aa29770?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kurukshetra War Scene">
+            <div class="mahabharata-image-caption">The Battlefield of Kurukshetra</div>
+          </div>
+          <div class="mahabharata-text">
+            <p>The Bhagavad Gita occurs in the Bhishma Parva of the Mahabharata and comprises 18 chapters from the 25th through the 42nd. The Mahabharata epic describes the conflict between two groups of cousins - the Kauravas and the Pandavas - culminating in the Kurukshetra War.</p>
+            <p>On the first day of the war, the great warrior Arjuna asks his charioteer Krishna to position his chariot between the two armies. Seeing his relatives, teachers, and friends in the opposing army, Arjuna is overcome with grief and moral dilemma about fighting his own kin. This moment of crisis triggers the dialogue known as the Bhagavad Gita, where Lord Krishna, who reveals himself as the Supreme Being, imparts divine wisdom to Arjuna about duty (dharma), righteous action, and spiritual knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="chapters-section">
+      <h2 class="section-title">The 18 Divine Chapters</h2>
+      
+      <div class="mandala-container">
+        <div class="mandala-bg"></div>
+        <div class="mandala-rays"></div>
+        <div class="mandala-inner-circle">गीता</div>
+        <!-- Chapter circles will be generated by JavaScript -->
+      </div>
+    </div>
+    
+    <!-- New Key Teachings Section -->
+    <div class="teachings-section">
+      <h2 class="teachings-title">Key Teachings of the Gita</h2>
+      <div class="teachings-container">
+        <div class="teaching-card">
+          <div class="teaching-icon">🧘</div>
+          <h3 class="teaching-title">कर्म योग</h3>
+          <p class="teaching-text">The path of selfless action. Perform your duties without attachment to the results, dedicating all actions to the Divine.</p>
+        </div>
+        <div class="teaching-card">
+          <div class="teaching-icon">🔥</div>
+          <h3 class="teaching-title">ज्ञान योग</h3>
+          <p class="teaching-text">The path of spiritual knowledge and wisdom. Understanding the eternal nature of the soul and its relationship with the Supreme.</p>
+        </div>
+        <div class="teaching-card">
+          <div class="teaching-icon">❤️</div>
+          <h3 class="teaching-title">भक्ति योग</h3>
+          <p class="teaching-text">The path of loving devotion to the Divine. Surrender to God with love and devotion as the highest spiritual practice.</p>
+        </div>
+        <div class="teaching-card">
+          <div class="teaching-icon">⚖️</div>
+          <h3 class="teaching-title">धर्म</h3>
+          <p class="teaching-text">Righteousness and duty. Understanding one's purpose and responsibilities in life according to eternal cosmic law.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="quote-section">
+      <div class="quote-decoration">
+        <div class="quote-lotus">॥</div>
+      </div>
+      <div class="quote">
+        <p class="quote-sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥</p>
+        <p class="quote-english">You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself to be the cause of the results of your activities, nor be attached to inaction.</p>
+      </div>
+      <div class="quote-author">- Bhagavad Gita, Chapter 2, Verse 47</div>
+    </div>
+    
+    <div class="footer">
+      <div class="footer-decoration"></div>
+      <p class="footer-text">© 2025 Gita Online. All rights reserved.</p>
+    </div>
+  </div>
+  
+  <div class="chapter-details">
+    <div class="details-content">
+      <div class="details-border"></div>
+      <button class="close-btn">&times;</button>
+      <div class="details-header">
+        <h3 class="details-title">Chapter 1: Arjuna Vishada Yoga</h3>
+        <div class="details-sanskrit">अर्जुन विषाद योग</div>
+      </div>
+      <div class="details-description">
+        <p>The first chapter of the Bhagavad Gita introduces the setting, the conflict, and the characters of the epic discourse that follows. As both armies stand ready for battle, the mighty warrior Arjuna, overwhelmed by moral dilemma and compassion, drops his weapons and turns to his charioteer, Lord Krishna, for guidance.</p>
+      </div>
+      <div class="details-verse">
+        <p class="details-verse-sanskrit">धृतराष्ट्र उवाच |<br>धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |<br>मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||१-१||</p>
+        <p class="details-verse-english">Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu do when they assembled on the holy field of Kurukshetra, eager for battle?</p>
+      </div>
+      <button class="read-more-btn">Read Full Chapter</button>
+    </div>
+  </div>
+
+  <script>
+    // Book data
+    const chapters = [
+      { chapter: 1, sanskrit: "अर्जुन विषाद योग", english: "Arjuna Vishada Yoga", 
+        description: "Arjuna's dilemma and despair on the battlefield as he faces his relatives and teachers on the opposing side.",
+        verse_sanskrit: "धृतराष्ट्र उवाच |<br>धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |<br>मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||१-१||",
+        verse_english: "Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu do when they assembled on the holy field of Kurukshetra, eager for battle?" },
+      { chapter: 2, sanskrit: "सांख्य योग", english: "Sankhya Yoga", 
+        description: "Lord Krishna's teachings on the immortal soul, the nature of the body, and the path of knowledge.",
+        verse_sanskrit: "श्री भगवानुवाच |<br>अशोच्यानन्वशोचस्त्वं प्रज्ञावादांश्च भाषसे |<br>गतासूनगतासूंश्च नानुशोचन्ति पण्डिताः ||२-११||",
+        verse_english: "The Supreme Lord said: While speaking learned words, you are mourning for what is not worthy of grief. Those who are wise lament neither for the living nor the dead." },
+      { chapter: 3, sanskrit: "कर्म योग", english: "Karma Yoga", 
+        description: "The path of selfless action and performing one's duties without attachment to results.",
+        verse_sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ||३-४७||",
+        verse_english: "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself to be the cause of the results, and never be attached to not doing your duty." },
+      { chapter: 4, sanskrit: "ज्ञान योग", english: "Jnana Yoga", 
+        description: "The path of spiritual knowledge and the transcendental nature of Lord Krishna's appearance and activities.",
+        verse_sanskrit: "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत |<br>अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ||४-७||",
+        verse_english: "Whenever and wherever there is a decline in righteousness and a rise in unrighteousness, at that time I manifest myself." },
+      { chapter: 5, sanskrit: "कर्म संन्यास योग", english: "Karma Sanyasa Yoga", 
+        description: "Renunciation of action and the state of divine consciousness that liberates one from all reactions.",
+        verse_sanskrit: "ब्रह्मण्याधाय कर्माणि सङ्गं त्यक्त्वा करोति यः |<br>लिप्यते न स पापेन पद्मपत्रमिवाम्भसा ||५-१०||",
+        verse_english: "One who performs his duty without attachment, surrendering the results unto the Supreme Lord, is unaffected by sinful action, as the lotus leaf is untouched by water." },
+      { chapter: 6, sanskrit: "ध्यान योग", english: "Dhyana Yoga", 
+        description: "The science of self-realization through meditation and the control of mind and senses.",
+        verse_sanskrit: "युञ्जन्नेवं सदात्मानं योगी नियतमानसः |<br>शान्तिं निर्वाणपरमां मत्संस्थामधिगच्छति ||६-१५||",
+        verse_english: "Thus practicing constant control of the body, mind and activities, the mystic transcendentalist, his mind regulated, attains to the kingdom of God by cessation of material existence." },
+      { chapter: 7, sanskrit: "ज्ञान विज्ञान योग", english: "Jnana Vijnana Yoga", 
+        description: "Knowledge of the Absolute and the process of knowing Krishna completely through His various energies.",
+        verse_sanskrit: "मय्यासक्तमनाः पार्थ योगं युञ्जन्मदाश्रयः |<br>असंशयं समग्रं मां यथा ज्ञास्यसि तच्छृणु ||७-१||",
+        verse_english: "Now hear, O son of Pritha, how by practicing yoga in full consciousness of Me, with mind attached to Me, you can know Me in full, free from doubt." },
+      { chapter: 8, sanskrit: "अक्षर ब्रह्म योग", english: "Akshara Brahma Yoga", 
+        description: "The path to the imperishable Brahman and the importance of remembering the Lord at the time of death.",
+        verse_sanskrit: "अन्तकाले च मामेव स्मरन्मुक्त्वा कलेवरम् |<br>यः प्रयाति स मद्भावं याति नास्त्यत्र संशयः ||८-५||",
+        verse_english: "And whoever, at the end of his life, quits his body remembering Me alone at once attains My nature. Of this there is no doubt." },
+      { chapter: 9, sanskrit: "राज विद्या योग", english: "Raja Vidya Yoga", 
+        description: "The most confidential knowledge of Krishna's divine nature and the simple process of devotional service.",
+        verse_sanskrit: "अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते |<br>तेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम् ||९-२२||",
+        verse_english: "But those who always worship Me with exclusive devotion, meditating on My transcendental form—to them I carry what they lack, and I preserve what they have." },
+      { chapter: 10, sanskrit: "विभूति योग", english: "Vibhuti Yoga", 
+        description: "The infinite glories and divine manifestations of Lord Krishna throughout the universe.",
+        verse_sanskrit: "अहं सर्वस्य प्रभवो मत्तः सर्वं प्रवर्तते |<br>इति मत्वा भजन्ते मां बुधा भावसमन्विताः ||१०-८||",
+        verse_english: "I am the source of all spiritual and material worlds. Everything emanates from Me. The wise who perfectly know this engage in My devotional service and worship Me with all their hearts." },
+      { chapter: 11, sanskrit: "विश्वरूप दर्शन योग", english: "Vishwarupa Darshana Yoga", 
+        description: "The revelation of Krishna's universal form, displaying His cosmic manifestation and divine splendor.",
+        verse_sanskrit: "कालोऽस्मि लोकक्षयकृत्प्रवृद्धो लोकान्समाहर्तुमिह प्रवृत्तः |<br>ऋतेऽपि त्वां न भविष्यन्ति सर्वे येऽवस्थिताः प्रत्यनीकेषु योधाः ||११-३२||",
+        verse_english: "Time I am, the great destroyer of the worlds, and I have come here to destroy all people. With the exception of you [the Pandavas], all the soldiers here on both sides will be slain." },
+      { chapter: 12, sanskrit: "भक्ति योग", english: "Bhakti Yoga", 
+        description: "The path of loving devotional service and the qualities of the devotees who are dear to the Lord.",
+        verse_sanskrit: "मय्यावेश्य मनो ये मां नित्ययुक्ता उपासते |<br>श्रद्धया परयोपेतास्ते मे युक्ततमा मताः ||१२-२||",
+        verse_english: "Those who fix their minds on My personal form and are always engaged in worshiping Me with great and transcendental faith are considered by Me to be most perfect." },
+      { chapter: 13, sanskrit: "क्षेत्र क्षेत्रज्ञ योग", english: "Kshetra Kshetrajna Yoga", 
+        description: "The distinction between the body (field), the soul (knower of the field), and the process of liberation.",
+        verse_sanskrit: "इदं शरीरं कौन्तेय क्षेत्रमित्यभिधीयते |<br>एतद्यो वेत्ति तं प्राहुः क्षेत्रज्ञ इति तद्विदः ||१३-१||",
+        verse_english: "O son of Kunti, this body is called the field, and one who knows this body is called the knower of the field." },
+      { chapter: 14, sanskrit: "गुणत्रय विभाग योग", english: "Gunatraya Vibhaga Yoga", 
+        description: "The three modes of material nature and how they influence the embodied soul.",
+        verse_sanskrit: "सत्त्वं रजस्तम इति गुणाः प्रकृतिसम्भवाः |<br>निबध्नन्ति महाबाहो देहे देहिनमव्ययम् ||१४-५||",
+        verse_english: "Material nature consists of three modes – goodness, passion and ignorance. When the eternal living entity comes in contact with nature, O mighty-armed Arjuna, he becomes conditioned by these modes." },
+      { chapter: 15, sanskrit: "पुरुषोत्तम योग", english: "Purushottama Yoga", 
+        description: "The nature of the Supreme Person and how to know, serve, and attain Him.",
+        verse_sanskrit: "द्वाविमौ पुरुषौ लोके क्षरश्चाक्षर एव च |<br>क्षरः सर्वाणि भूतानि कूटस्थोऽक्षर उच्यते ||१५-१६||",
+        verse_english: "There are two classes of beings, the fallible and the infallible. In the material world every living entity is fallible, and in the spiritual world every living entity is called infallible." },
+      { chapter: 16, sanskrit: "दैवासुर संपद योग", english: "Daivasura Sampad Yoga", 
+        description: "The divine and demoniac natures that exist within beings and their consequences.",
+        verse_sanskrit: "अभयं सत्त्वसंशुद्धिर्ज्ञानयोगव्यवस्थितिः |<br>दानं दमश्च यज्ञश्च स्वाध्यायस्तप आर्जवम् ||१६-१||",
+        verse_english: "Fearlessness, purification of one's existence, cultivation of spiritual knowledge, charity, self-control, performance of sacrifice, study of the Vedas, austerity, and simplicity..." },
+      { chapter: 17, sanskrit: "श्रद्धात्रय विभाग योग", english: "Shraddhatraya Vibhaga Yoga", 
+        description: "The three types of faith and how they determine one's character and destiny.",
+        verse_sanskrit: "त्रिविधा भवति श्रद्धा देहिनां सा स्वभावजा |<br>सात्त्विकी राजसी चैव तामसी चेति तां शृणु ||१७-२||",
+        verse_english: "According to the modes of nature acquired by the embodied soul, one's faith can be of three kinds—in goodness, in passion or in ignorance. Now hear about this." },
+      { chapter: 18, sanskrit: "मोक्ष संन्यास योग", english: "Moksha Sanyasa Yoga", 
+        description: "The perfection of renunciation, the path to liberation, and the essence of the Bhagavad Gita's teachings.",
+        verse_sanskrit: "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज |<br>अहं त्वां सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः ||१८-६६||",
+        verse_english: "Abandon all varieties of religion and just surrender unto Me. I shall deliver you from all sinful reactions. Do not fear." }
+    ];
+
+    // Create chapter circles in a mandala pattern
+    function createChapterCircles() {
+      const mandalaContainer = document.querySelector('.mandala-container');
+      const centerX = mandalaContainer.offsetWidth / 2;
+      const centerY = mandalaContainer.offsetHeight / 2;
+      
+      // Create rays for the mandala - FIXED: More rays and better positioning
+      const mandalaRays = document.querySelector('.mandala-rays');
+      // Clear any existing rays
+      mandalaRays.innerHTML = '';
+      
+      for (let i = 0; i < 72; i++) {
+        const ray = document.createElement('div');
+        ray.classList.add('mandala-ray');
+        // FIXED: Properly center rays by using absolute positioning from center
+        const angle = (i * 5) * (Math.PI / 180); // Convert to radians
+        const length = Math.min(centerX, centerY) * 0.9; // Ray length based on container size
+        
+        ray.style.height = `${length}px`;
+        ray.style.transform = `translate(-50%, 0) rotate(${i * 5}deg)`;
+        // Add staggered animation delay for rays
+        ray.style.animationDelay = `${i * 0.05}s`;
+        mandalaRays.appendChild(ray);
+      }
+      
+      // Calculate radius for the mandala
+      const radius = Math.min(centerX, centerY) * 0.75;
+      
+      // Create chapter circles
+      chapters.forEach((chapter, index) => {
+        // Calculate position in a circle
+        const angle = (index / chapters.length) * 2 * Math.PI;
+        const x = centerX + radius * Math.cos(angle) - 60; // 60 is half the width of the circle
+        const y = centerY + radius * Math.sin(angle) - 60; // 60 is half the height of the circle
+        
+        const chapterItem = document.createElement('div');
+        chapterItem.classList.add('chapter-item');
+        chapterItem.style.left = `${x}px`;
+        chapterItem.style.top = `${y}px`;
+        
+        // Add Mahabharata-themed glow effect
+        const chapterGlow = document.createElement('div');
+        chapterGlow.classList.add('chapter-glow');
+        chapterItem.appendChild(chapterGlow);
+        
+        const chapterNumber = document.createElement('div');
+        chapterNumber.classList.add('chapter-number');
+        chapterNumber.textContent = chapter.chapter;
+        
+        const chapterName = document.createElement('div');
+        chapterName.classList.add('chapter-name');
+        chapterName.textContent = chapter.english;
+        
+        const chapterSanskrit = document.createElement('div');
+        chapterSanskrit.classList.add('chapter-sanskrit');
+        chapterSanskrit.textContent = chapter.sanskrit;
+        
+        chapterItem.appendChild(chapterNumber);
+        chapterItem.appendChild(chapterName);
+        chapterItem.appendChild(chapterSanskrit);
+        
+        // Add click event
+        chapterItem.addEventListener('click', () => {
+          showChapterDetails(chapter);
+        });
+        
+        mandalaContainer.appendChild(chapterItem);
+        
+        // Animate the appearance with a delay based on index
+        setTimeout(() => {
+          chapterItem.style.transform = 'scale(1)';
+          chapterItem.style.opacity = '1';
+        }, 100 * index);
+      });
+    }
+
+    // Show chapter details
+    function showChapterDetails(chapter) {
+      const detailsContainer = document.querySelector('.chapter-details');
+      const detailsTitle = document.querySelector('.details-title');
+      const detailsSanskrit = document.querySelector('.details-sanskrit');
+      const detailsDescription = document.querySelector('.details-description p');
+      const detailsVerseSanskrit = document.querySelector('.details-verse-sanskrit');
+      const detailsVerseEnglish = document.querySelector('.details-verse-english');
+      const readMoreBtn = document.querySelector('.read-more-btn');
+      
+      detailsTitle.textContent = `Chapter ${chapter.chapter}: ${chapter.english}`;
+      detailsSanskrit.textContent = chapter.sanskrit;
+      detailsDescription.textContent = chapter.description;
+      detailsVerseSanskrit.innerHTML = chapter.verse_sanskrit;
+      detailsVerseEnglish.textContent = chapter.verse_english;
+      
+      readMoreBtn.addEventListener('click', () => {
+        window.location.href = `/main/books/book${chapter.chapter}.html`;
+      });
+      
+      detailsContainer.classList.add('active');
+    }
+
+    // Close chapter details
+    document.querySelector('.close-btn').addEventListener('click', () => {
+      document.querySelector('.chapter-details').classList.remove('active');
+    });
+
+    // Initialize animations when the page is loaded
+    window.addEventListener('DOMContentLoaded', () => {
+      // Handle loading screen
+      setTimeout(() => {
+        document.querySelector('.loading-screen').style.opacity = '0';
+        setTimeout(() => {
+          document.querySelector('.loading-screen').style.display = 'none';
+        }, 500);
+      }, 3500); // Show loading screen for 3.5 seconds
+      
+      // Animate header elements
+      setTimeout(() => {
+        document.querySelector('.om-symbol').style.opacity = '1';
+        document.querySelector('.om-symbol').style.transform = 'translateY(0)';
+      }, 3800);
+      
+      setTimeout(() => {
+        document.querySelector('header').style.opacity = '1';
+        document.querySelector('header').style.transform = 'translateY(0)';
+      }, 4100);
+      
+      setTimeout(() => {
+        document.querySelector('.intro-text').style.opacity = '1';
+        document.querySelector('.intro-text').style.transform = 'translateY(0)';
+      }, 4400);
+      
+      // Animate Mahabharata section
+      const mahabharataObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            mahabharataObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      mahabharataObserver.observe(document.querySelector('.mahabharata-section'));
+      
+      // Animate section title
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      sectionObserver.observe(document.querySelector('.section-title'));
+      
+      // Animate mandala container
+      const mandalaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'scale(1)';
+            
+            // Animate inner circle and rays
+            setTimeout(() => {
+              document.querySelector('.mandala-inner-circle').style.opacity = '1';
+            }, 500);
+            
+            setTimeout(() => {
+              document.querySelector('.mandala-rays').style.opacity = '1';
+            }, 800);
+            
+            createChapterCircles();
+            mandalaObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      mandalaObserver.observe(document.querySelector('.mandala-container'));
+      
+      // Animate teachings section
+      const teachingsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            
+            // Animate teaching cards
+            const cards = document.querySelectorAll('.teaching-card');
+            cards.forEach((card, index) => {
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 200 * index);
+            });
+            
+            teachingsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      teachingsObserver.observe(document.querySelector('.teachings-section'));
+      
+      // Animate quote section
+      const quoteObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            quoteObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      quoteObserver.observe(document.querySelector('.quote-section'));
+      
+      // Animate footer
+      const footerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            footerObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      footerObserver.observe(document.querySelector('.footer'));
+      
+      // Handle window resize for responsive rays
+      window.addEventListener('resize', () => {
+        // Redraw rays when window is resized
+        createChapterCircles();
+      });
+    });
+  </script>
 </body>
 </html>
