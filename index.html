@@ -191,7 +191,7 @@
         window.addEventListener('load', function() {
             const mainContainer = document.getElementById('mainContainer');
             const burnAudio = document.getElementById('burnAudio');
-            const elements = document.querySelectorAll('h3, #bhagwat, #gita, .golden-button');
+            const elements = document.querySelectorAll('.golden-button');
             
             // Add transition classes to all text elements
             elements.forEach(el => {
@@ -214,9 +214,6 @@
                     mainContainer.classList.add('mask-animate');
                     
                     // Staggered text animations
-                    setTimeout(() => { document.querySelector('h3').classList.add('visible'); }, 500);
-                    setTimeout(() => { document.getElementById('bhagwat').classList.add('visible'); }, 1000);
-                    setTimeout(() => { document.getElementById('gita').classList.add('visible'); }, 1500);
                     setTimeout(() => { document.querySelector('.golden-button').classList.add('visible'); }, 2000);
                 }, 50);
             }, initialDelay);
