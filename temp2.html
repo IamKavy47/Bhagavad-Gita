@@ -25,8 +25,7 @@
             width: 100%;
             height: 100%;
             display: flex;
-            /* align-items: center; */
-            margin-top: 150px;
+            align-items: center;
             justify-content: center;
         }
         
@@ -47,6 +46,66 @@
             }
             100% {
                 transform: rotate(360deg);
+            }
+        }
+        
+        .golden-arrow-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 100%;
+            background-color: rgba(212, 175, 55, 0);
+            bottom: -50px;
+        }
+        
+        /* Just the tail position */
+        .tail {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 70.25%;
+            left: 650px;
+            z-index: 1;
+            
+        }
+        
+        /* Moving cover box that hides the tail */
+        .moving-cover {
+            position: relative;
+            height: 15px;
+            width: 60%;
+            background-color: #FDF7E9; /* Same as page background */
+            top: 64.5%;
+            z-index: 3; /* Above the tail but below the head */
+            animation: moveCover 3s linear infinite;
+        }
+        
+        .head {
+            position: relative;
+            width: 10px;
+            height: 10px;
+            transform: rotate(180deg);
+            top: 66.7%;
+            z-index: 4; /* Above everything */
+            animation: moveArrowHead 3s linear infinite;
+        }
+        
+        @keyframes moveArrowHead {
+            0% {
+                left: 300px;
+            }
+            100% {
+                left: 780px;
+            }
+        }
+        
+        @keyframes moveCover {
+            0% {
+                left: 300px;
+            }
+            100% {
+                left: 780px;
             }
         }
         h3{
@@ -84,7 +143,20 @@
         <div class="loading-container">
             <!-- SVG for Surya Chakra (Sun Wheel) -->
             <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
-            <img src="https://gitaonline.vercel.app/images/arrow.png" class="arr" alt="arrow">
+            
+            <!-- Golden Arrow Loading Bar -->
+            <div class="golden-arrow-container">
+                <!-- Arrow line that extends -->
+                <div class="arrow-line"></div>
+                
+                <!-- Tail fixed at start position -->
+                <div class="tail"><img src="/images/tail.png" alt="arrow tail"></div>
+                
+                <!-- Moving cover that hides tail -->
+                <div class="moving-cover"></div>
+                
+                <!-- Head that moves across -->
+                <div class="head"><img src="/images/head.png" alt="arrow head"></div>
                 <h3>Loading...</h3>
             </div>
         </div>
