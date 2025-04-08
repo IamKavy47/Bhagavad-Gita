@@ -7,26 +7,14 @@
   <style>
     body {
       margin: 0;
+      padding: 0;
       height: 100vh;
-      background: #111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      width: 100vw;
+      background-image: url("/images/story/1.png");
+      background-size: cover;
+      background-position: center;
       font-family: sans-serif;
-    }
-
-    #image {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 12px;
-    }
-
-    main {
-      max-width: 95%;
-      max-height: 100%;
-      border-radius: 12px;
-      position: relative;
+      overflow: hidden;
     }
 
     .slider-container {
@@ -51,124 +39,296 @@
       border-radius: 50%;
       cursor: grab;
       touch-action: none;
-      transition: background 0.2s ease;
+      transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       box-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
-    .mute-btn {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease;
-    }
-
-    .mute-btn:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-
-    .mute-btn.muted::before {
-      content: "🔇";
-    }
-
-    .mute-btn::before {
-      content: "🔊";
+    .slider-thumb.dragging {
+      transition: none;
     }
     
-    audio {
-      display: none;
+    .status {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      padding: 10px 10px;
+      border-radius: 12px;
+      font-size: 20px;
+    }
+
+    /* Popup styles */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .popup-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup-content {
+      background-color: white;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .popup-overlay.show .popup-content {
+      transform: translateY(0);
+    }
+
+    .popup-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      color: #333;
+    }
+
+    .popup-message {
+      font-size: 16px;
+      margin-bottom: 24px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .rotate-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: inline-block;
+      animation: rotate 2s infinite ease-in-out;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(90deg); }
+      50% { transform: rotate(90deg); }
+      75% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    .popup-button {
+      background-color: salmon;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 24px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .popup-button:hover {
+      background-color: #e8644c;
     }
   </style>
 </head>
 <body>
-        <main>
-            <!-- Hidden autoplay audio (starts muted) -->
-            <audio id="bg-audio" src="/images/bg.mp3" autoplay muted loop></audio>
-        
-            <!-- Story image -->
-            <img id="image" src="/images/story/1.png" alt="Story" />
-        
-            <!-- Vertical slider -->
-            <div class="slider-container">
-              <div id="thumb" class="slider-thumb"></div>
-            </div>
-        
-            <!-- Mute/unmute button -->
-            <button id="muteBtn" class="mute-btn"></button>
-          </main>
+  <div class="slider-container">
+    <div id="thumb" class="slider-thumb"></div>
+  </div>
+  
+  <div class="status" id="status">Ye hai Hastinapur - sukh or khushahali se bhara hua ek mahan Rajya.</div>
+
+  <!-- Rotation popup -->
+  <div id="rotationPopup" class="popup-overlay">
+    <div class="popup-content">
+      <div class="rotate-icon">📱</div>
+      <div class="popup-title">Better Experience Available!</div>
+      <div class="popup-message">Please rotate your device to landscape orientation for the best viewing experience.</div>
+      <button id="dismissButton" class="popup-button">Got it</button>
+    </div>
+  </div>
+
   <script>
     let currentImage = 1;
-    const maxImages = 5;
+    const maxImages = 27;
     const thumb = document.getElementById("thumb");
-    const image = document.getElementById("image");
+    const status = document.getElementById("status");
+    const threshold = 200; // Point at which image changes
     const containerHeight = 300;
-    const threshold = 250;
+    const rotationPopup = document.getElementById("rotationPopup");
+    const dismissButton = document.getElementById("dismissButton");
 
+    let isDragging = false;
     let startY = 0;
     let currentY = 0;
+    let popupShown = false;
 
-    const audio = document.getElementById("bg-audio");
-    const muteBtn = document.getElementById("muteBtn");
-
-    // Ensure audio plays on any user interaction
-    window.addEventListener("click", () => {
-      if (audio.paused) {
-        audio.play();
-      }
-    });
-
-    // Mute/unmute logic
-    muteBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // Prevent triggering play
-      audio.muted = !audio.muted;
-      muteBtn.classList.toggle("muted", audio.muted);
-    });
-
-    // Drag start
-    thumb.addEventListener("touchstart", (e) => {
-      startY = e.touches[0].clientY;
-      thumb.style.transition = 'none';
-    });
-
-    // Drag move
-    thumb.addEventListener("touchmove", (e) => {
-      const touchY = e.touches[0].clientY;
-      let diff = touchY - startY;
-      diff = Math.max(0, Math.min(diff, containerHeight - 40));
-      currentY = diff;
-      thumb.style.transform = `translateY(${diff}px)`;
-    });
-
-    // Drag end
-    thumb.addEventListener("touchend", () => {
-      if (currentY > threshold) {
-        goToNextImage();
-      }
-      thumb.style.transition = 'transform 0.3s ease';
-      thumb.style.transform = 'translateY(0px)';
-      currentY = 0;
-    });
-
-    function goToNextImage() {
-      if (currentImage < maxImages) {
-        currentImage++;
-        const newSrc = `/images/story/${currentImage}.png`;
-        image.src = newSrc;
-      } else {
-        alert("You’ve reached the last image!");
+    // Check if rotation popup should be shown
+    function checkRotationPopup() {
+      if (!popupShown && window.innerWidth < 1400) {
+        rotationPopup.classList.add("show");
+        popupShown = true;
+        // Store that popup has been shown
+        localStorage.setItem("rotationPopupShown", "true");
       }
     }
-  </script>
 
+    // Check if popup has been shown before
+    function checkStoredPopupStatus() {
+      if (localStorage.getItem("rotationPopupShown") !== "true") {
+        checkRotationPopup();
+      } else {
+        popupShown = true;
+      }
+    }
+
+    // Dismiss popup
+    dismissButton.addEventListener("click", () => {
+      rotationPopup.classList.remove("show");
+    });
+
+    // Update background image
+    function updateBackgroundImage(imageNumber) {
+      document.body.style.backgroundImage = `url("/images/story/${imageNumber}.png")`;
+      if(imageNumber == 2){
+        status.textContent = "Is rajya ke raja the — Vichitraveerya. Unke dehant ke baad, unke bade putra Dhritarashtra ko rajgaddi sambhalne ka yog mila.";
+      }else if(imageNumber == 3){
+        status.textContent = "Lekin Dhritarashtra janm se hi andhe the... aur isi wajah se, sabne socha ki unhe raja banana sahi nahi hoga.";
+      }else if(imageNumber == 4){
+        status.textContent = "Phir rajgaddi ka zimma unke chhote bhai Pandu ne uthaya.";
+      }else if(imageNumber == 5){
+        status.textContent = "Raja Pandu ke paanch putra hue — Yudhishthir, Bheem, Arjun, Nakul aur Sahdev. log inhe 'Pandav' kehkar bulane lage.";
+      }else if(imageNumber == 6){
+        status.textContent = "Udhar, Dhritarashtra ke bhi 100 putra hue... jinmein sabse bada tha Duryodhan. log unhe 'Kaurav' kehne lage.";
+      }else if(imageNumber == 7){
+        status.textContent = "Pandav aur Kaurav bachpan se ek saath bade hue. Phir ek din, unhe bheja gaya guru Dronacharya ke ashram mein — shastra aur shaastra-vidya seekhne ke liye.";
+      }else if(imageNumber == 8){
+        status.textContent = "Wahiin, Arjun ne sabka dil jeet liya. Guru Dronacharya ke wo sabse priya shishya ban gaye. Dhanuvidya mein toh unka jawab hi nahi tha.";
+      }else if(imageNumber == 9){
+        status.textContent = "Lekin Duryodhan ko Arjun ki yeh badhti lokpriyata bilkul pasand nahi aayi. Dheere dheere, uske mann mein jalan aur nafrat ghar kar gayi.";
+      }else if(imageNumber == 10){
+        status.textContent = "Usne ek saazish rachi — Lākshāgriha. Ek aisa mahal jo pura moom ka bana tha... usme wo Pandavon ko zinda jala dena chahta tha.";
+      }else if(imageNumber == 11){
+        status.textContent = "Par Pandav samajh gaye the... kuch toh gadbad hai. Raat ko hi ek secret surang ke zariye, woh Lakshagriha se bach nikle... aur chale gaye vanvaas mein.";
+      }else if(imageNumber == 12){
+        status.textContent = "Jungle mein unhone bahut kuch saha. Ek din, Arjun ne swayamvar mein Draupadi ko jeet liya... aur woh paanchon Pandavon ki patni bani.";
+      }else if(imageNumber == 13){
+        status.textContent = "Dhritarashtra ne Pandavon ko khush karne ke liye unhe ek hissa diya — Khaandavprasth. Pandavon ne use ek shandar nagari bana diya — Indraprasth.";
+      }else if(imageNumber == 14){
+        status.textContent = "Lekin Duryodhan ko Pandavon ki yeh tarakki chubhne lagi. Usne mama Shakuni ke saath milkar ek chal chali — juye ka khel.";
+      }else if(imageNumber == 15){
+        status.textContent = "Yudhishthir ne ek ek karke sab kuch haar diya — apna rajya, bhaiyon ko... aur ant mein, Draupadi ko bhi.";
+      }else if(imageNumber == 16){
+        status.textContent = "Sabha mein Draupadi ka apmaan hua. Lekin Krishna ne uski laaj bachayi... anek saariyon ke roop mein.";
+      }else if(imageNumber == 17){
+        status.textContent = "Saza ke roop mein, Pandavon ko mila 13 saal ka vanvaas — jisme se aakhri saal unhe gupt roop mein rehna tha.";
+      }else if(imageNumber == 18){
+        status.textContent = "Vanvaas ke dauraan, Pandavon ne kai kathin parikshaon ka samna kiya. Arjun ne devtaon se astr-shastr prapt kiye.";
+      }else if(imageNumber == 19){
+        status.textContent = "Agyatvaas poora hone ke baad, Pandav wapas aaye — apna rajya wapas maangne. Par Duryodhan ne ek sooi ki nok jitni zameen dene se bhi mana kar diya.";
+      }else if(imageNumber == 20){
+        status.textContent = "Ab yuddh nishchit tha — dharm aur adharm ke beech ek maha yudh.";
+      }else if(imageNumber == 21){
+        status.textContent = "Kuru-kshetra ki bhoomi par, dono senaein aamne-saamne thi. Ek taraf the Pandav, doosri taraf Kaurav... aur Shri Krishna the Arjun ke saarathi.";
+      }else if(imageNumber == 22){
+        status.textContent = "Yuddh ke pehle, Arjun ne apne haath ka dhanush neeche rakh diya... woh apne hi rishtedaron ke khilaaf yuddh karne ko tayyar nahi the.";
+      }else if(imageNumber == 23){
+        status.textContent = "Tab Krishna ne diya Gita ka updesh — “Karm karo Arjun, fal ki chinta mat karo.”";
+      }else if(imageNumber == 24){
+        status.textContent = "Yuddh 18 din tak chala. Bhishma, Dron, aur Karan jaise maha yoddha ek ek karke girte gaye.";
+      }else if(imageNumber == 25){
+        status.textContent = "Ant mein, Duryodhan bhi gada yudh mein Bheem ke haathon maar gira... aur Pandavon ne jeet haasil ki.";
+      }else if(imageNumber == 26){
+        status.textContent = "Par yeh jeet khushi nahi laayi. Kuruvansh ke adhiktar log maare gaye the. Ek khali jeet thi, jisme sirf dard bacha tha.";
+      }else if(imageNumber == 27){
+        status.textContent = "Akhir mein, Pandav sab kuch tyag kar Himalaya ki taraf nikal gaye... moksh ki talaash mein.";
+      }
+    }
+    
+    // Spring back animation
+    function springBack() {
+      thumb.style.transform = 'translateY(0)';
+    }
+    
+    // Go to next image if threshold passed
+    function checkThreshold() {
+      if (currentY > threshold && currentImage < maxImages) {
+        currentImage++;
+        updateBackgroundImage(currentImage);
+      }
+    }
+    
+    // Mouse events for desktop
+    thumb.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      startY = e.clientY;
+      thumb.classList.add('dragging');
+      e.preventDefault();
+    });
+    
+    document.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      
+      const diff = e.clientY - startY;
+      currentY = Math.max(0, Math.min(diff, containerHeight - 45));
+      thumb.style.transform = `translateY(${currentY}px)`;
+    });
+    
+    document.addEventListener("mouseup", () => {
+      if (isDragging) {
+        isDragging = false;
+        thumb.classList.remove('dragging');
+        checkThreshold();
+        springBack();
+      }
+    });
+    
+    // Touch events for mobile
+    thumb.addEventListener("touchstart", (e) => {
+      isDragging = true;
+      startY = e.touches[0].clientY;
+      thumb.classList.add('dragging');
+      e.preventDefault();
+    });
+    
+    document.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      
+      const diff = e.touches[0].clientY - startY;
+      currentY = Math.max(0, Math.min(diff, containerHeight - 45));
+      thumb.style.transform = `translateY(${currentY}px)`;
+      e.preventDefault();
+    });
+    
+    document.addEventListener("touchend", () => {
+      if (isDragging) {
+        isDragging = false;
+        thumb.classList.remove('dragging');
+        checkThreshold();
+        springBack();
+      }
+    });
+
+    // Check popup on page load
+    window.addEventListener("load", checkStoredPopupStatus);
+
+    // Also check when window resizes
+    window.addEventListener("resize", () => {
+      if (!popupShown) {
+        checkRotationPopup();
+      }
+    });
+  </script>
 </body>
 </html>
