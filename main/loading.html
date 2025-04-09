@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading...</title>
     <style>
+       
         .loading-screen {
             position: fixed;
             top: 0;
@@ -88,7 +89,7 @@
             width: 150px;
             height: 150px;
             z-index: 11;
-            top: 30%;
+            top: 28%;
             animation: rotateSuryaChakra 10s linear infinite;
         }
         
@@ -138,7 +139,7 @@
             height: 45px;
             line-height: 45px;
             padding-top: 3px;
-            top: 65%;
+            top: 62%;
             text-align: center;
             font-size: 15px;
             /* top: 55%; */
@@ -163,7 +164,22 @@
                 #FFF6C7 62.5%, 
                 #FFF6C7 100%   
             );
+            
             /* opacity: 0; */
+        }
+        #skip {
+            position: absolute;
+            line-height: 45px;
+            padding-top: 3px;
+            top: 73%;
+            text-align: center;
+            font-size: 15px;
+            /* top: 55%; */
+            font-weight: bold;
+            font-family: "Poppins", sans-serif;
+            text-decoration: none;
+            color: #FFE38B;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -176,6 +192,7 @@
             <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
                 <h3>Loading...</h3>
                 <a href="/main/experience.html" class="golden-button">ENTER THE EXPERIENCE</a>
+                <a id="skip" href="/main/bookshelf.html">Skip to The Gita -></a>
             </div>
         </div>
     </div>
