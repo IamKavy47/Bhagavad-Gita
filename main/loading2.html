@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading...</title>
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: #FDF7E9; */
+            background-image: url("/images/bg/landscape.png");
+            z-index: -1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        body{
+            margin: 0;
+            background-color: transparent;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .frame{
+            position: relative;
+            height: 90vh;
+            width:90vw;
+            z-index: 11;
+            background-color: transparent;
+        }
+        .frame::before{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px solid #d1b36e;
+            pointer-events: none;
+            border-radius: 0;
+            clip-path: polygon(
+                20px 0% calc(100% -20px) 0%, 100% 20px, 100% calc(100%-20px),calc(100%-20px) 100%, 20px 100%,0% calc(100%-20px),0% 20px
+            );
+            z-index: 11;
+        }
+        .frame::after{
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            border: 1px solid #d1b36e;
+            pointer-events: none;
+            clip-path: polygon(
+                8px 0% calc(100% -8px) 0%, 100% 8px, 100% calc(100%-8px),calc(100%-8px) 100%, 8px 100%,0% calc(100%-8px),0% 8px
+            );
+            z-index: 11;
+        }
+        .content{
+            position:relative;
+            z-index: 1;
+            padding: 40px;
+            color:white;
+        }
+        
+        .loading-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 11;
+            /* align-items: center; */
+            margin-top: 150px;
+            justify-content: center;
+        }
+        
+        .surya-chakra {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            z-index: 11;
+            top: 28%;
+            animation: rotateSuryaChakra 10s linear infinite;
+        }
+        
+        .loading-container img {
+            mix-blend-mode: darken;
+        }
+        
+        @keyframes rotateSuryaChakra {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        h3{
+          color: transparent;
+        }
+        .loading-text {
+        margin-top: 80px;
+        font-family: 'Tiro Devanagari Sanskrit', serif;
+        color: var(--sacred-red);
+        font-size: 1.5rem;
+        text-align: center;
+        }
+        .progress-container {
+            position: absolute;
+            width: 250px;
+            height: 4px;
+            background-color: rgba(209, 179, 110, 0.3);
+            top: 75%;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #d1b36e;
+            transition: width 3s linear;
+        }
+    </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="content">
+      <div class="loading-screen">
+        <div class="loading-container">
+            <!-- SVG for Surya Chakra (Sun Wheel) -->
+            <img src="https://gitaonline.vercel.app/images/sun.png" class="surya-chakra" alt="Surya Chakra">
+            <h3>Loading...</h3>
+        </div>
+        
+        <!-- Progress bar -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progress"></div>
+        </div>
+      </div>
+    </div>
+  </div>    
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.7/gsap.min.js" integrity="sha512-f6bQMg6nkSRw/xfHw5BCbISe/dJjXrVGfz9BSDwhZtiErHwk7ifbmBEtF9vFW8UNIQPhV2uEFVyI/UNob9r7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Set the URL you want to redirect to
+    const redirectURL = "https://gitaonline.vercel.app/main/bookshelf.html";
+    
+    // Initialize progress bar
+    const progressBar = document.getElementById('progress');
+    const countdown = document.getElementById('countdown');
+    
+    // Start the progress bar animation
+    window.onload = function() {
+      // Animate progress bar to 100% over 3 seconds
+      progressBar.style.width = '100%';
+      
+      // Countdown timer
+      let seconds = 3;
+      // Redirect after 3 seconds
+      setTimeout(function() {
+        window.location.href = redirectURL;
+      }, 3000);
+    };
+    
+
+  </script>
+</body>
+</html>
