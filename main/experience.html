@@ -155,14 +155,44 @@
       border-color: #ff3e3e;
       font-size: 20px;
       font-weight: bold;
-
     }
+    .golden-button {
+      position: absolute;
+      width: 100px;
+      height: 45px;
+      line-height: 45px;
+      padding-top: 3px;
+      left:85%;
+      top:5%;
+      text-align: center;
+      font-size: 20px;
+      /* top: 55%; */
+      font-weight: bold;
+      font-family: "Poppins", sans-serif;
+      text-decoration: none;
+      color: #481902;
+      border-radius: 20px;
+      background: radial-gradient(
+          ellipse farthest-corner at right bottom,
+          #FFE38B 0%,   
+          #FFF6C7 8%,   
+          #FFF6C7 30%,  
+          #FFF6C7 40%,  
+          transparent 80%
+      ),
+      radial-gradient(
+          ellipse farthest-corner at left top,
+          #FFFFFF 0%,   
+          #FFF6C7 8%,   
+          #E8D293 25%,  
+          #FFF6C7 62.5%, 
+          #FFF6C7 100%   
+      );  /* opacity: 0; */
+    }    
   </style>
 </head>
 <body>
-  <div class="menu">
-    <button class="btn">Menu</button>
-  </div>
+  <a href="/main/experience.html" class="golden-button">Menu</a>
   <div class="slider-container">
     <div id="thumb" class="slider-thumb"></div>
   </div>
